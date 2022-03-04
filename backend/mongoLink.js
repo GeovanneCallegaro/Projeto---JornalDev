@@ -1,1 +1,0 @@
-export const MONGO_DB_URL = "mongodb+srv://geovanne:vWjcTYR1bvKod3VM@cluster0.npyep.mongodb.net/NyFirstDatabase?retryWrites=true&w=majority"
