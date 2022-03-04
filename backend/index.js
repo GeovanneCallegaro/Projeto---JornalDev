@@ -1,4 +1,3 @@
-require('dotenv').config()
 const express = require('express');
 const cors = require('cors');
 
@@ -17,7 +16,9 @@ app.use(cors( {
 app.use(express.static('public'))
 
 // Routes
+const UserRoutes = require('./routes/userRoutes')
 
+app.use('/users', UserRoutes)
 
 // start server
 app.listen(5000)
