@@ -1,5 +1,6 @@
 const User = require('../models/User')
-const bycript = require('bcrypt')
+const bycrpt = require('bcrypt')
+const createUserToken = require('../helpers/createUserToken')
 
 
 module.exports = class UserController {
@@ -60,8 +61,8 @@ module.exports = class UserController {
         }        
 
         //create a password 
-        const salt = await bycript.genSalt(12)
-        const passwordHash = await bycript.hash(password, salt)
+        const salt = await bycrpt.genSalt(12)
+        const passwordHash = await bycrpt.hash(password, salt)
 
         // create a user
         const user = new User({
@@ -81,5 +82,44 @@ module.exports = class UserController {
         }
     }
 
-    
+    static async login(req, res) {
+        const {email, password} = req.body
+
+        // validation
+        if(!email) {
+            res.status(422).json({
+                message: 'O email é obrigatório'
+            })
+            return
+        }
+
+        if(!password) {
+            res.status(422).json({
+                message: 'A senha é obrigatória'
+            })
+            return
+        }
+
+        // check if user email exists in database
+        const user = await User.findOne({ email: email })
+
+        if(!user) {
+            res.status(422).json({
+                message: 'Não existe usuário com esse email!'
+            })
+            return
+        }
+
+        // check if password match with db
+        const checkPassword = await bycrpt.compare(password, user.password)
+
+        if(!checkPassword) {
+            res.status(422).json({
+                message: 'A senha esta incorreta'
+            })
+            return
+        }
+
+        await createUserToken(user, req, res)
+    }
 }
