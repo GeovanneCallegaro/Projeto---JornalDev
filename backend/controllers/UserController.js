@@ -2,6 +2,7 @@ const User = require('../models/User')
 const bycrpt = require('bcrypt')
 const createUserToken = require('../helpers/createUserToken')
 const getToken = require('../helpers/getToken')
+const getUserByToken = require('../helpers/getUserBytoken')
 const jwt = require('jsonwebtoken')
 const { mongoose } = require('mongoose')
 
@@ -154,5 +155,76 @@ module.exports = class UserController {
         }
 
         res.status(200).json({ findIdUser })
+    }
+
+    static async editUser(req, res) {
+        const id = mongoose.Types.ObjectId(req.params.id)
+
+        // check if users exists 
+        const token = getToken(req)
+        const user = await getUserByToken(token)
+
+        const {name, age, email, password, confirmPassword} = req.body
+
+        // validations 
+
+        if(!name) {
+            res.status(402).json({
+                message: 'O nome é obrigatório!'
+            })
+        }
+
+        user.name = name
+
+        if(!age) {
+            res.status(402).json({
+                message: 'A idade é obrigatória!'
+            })
+        }
+
+        user.age = age
+
+        if(!email) {
+            res.status(402).json({
+                message: 'o email é obrigatório'
+            })
+        }
+
+        // check if email has already taken
+        const userExists = await User.findOne({email: email})
+
+        if(user.email != email && userExists) {
+            res.status(402).json({
+                message: 'O email já esta cadastrado!'
+            })
+            return
+        }
+
+        user.email = email
+
+        if(password !== confirmPassword) {
+            res.status(422).json({ message: 'As senhas devem ser iguais' })
+            return
+            } else if(password === confirmPassword &&password != null) {
+            //creating a password
+            const salt = await bcrypt.genSalt(12)
+            const passwordHash = await bcrypt.hash(password, salt)
+            user.password = passwordHash
+        }
+
+        try {
+            // return user updated data
+            await User.findOneAndUpdate(
+                {_id: user._id},
+                {$set: user},
+                {new: true}
+            )
+
+            res.status(200).json({
+                message: 'Usuário atualizado com sucesso'
+            })
+        } catch(error) {
+            res.status(500).json({message: 'Não foi possível atualizar o usuário!'})
+        }
     }
 }
