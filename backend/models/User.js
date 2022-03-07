@@ -20,6 +20,9 @@ const User = mongoose.model(
             type: String, 
             required: true
         },
+        admin: {
+            type: Boolean, 
+        }
     }, {timestamps: true})
 )
 
