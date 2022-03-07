@@ -73,17 +73,23 @@ module.exports = class UserController {
             name, 
             age, 
             email, 
-            password: passwordHash
+            password: passwordHash, 
+            admin: false, 
+            function: 'usuário'
         })
 
         try {
             await user.save()
-
+            
         } catch (error) {
             res.status(500).json({
                 message: error
             })
         }
+
+        res.status(200).json({
+            message: 'O usuário foi cadastrado com sucesso!'
+        })
     }
 
     static async login(req, res) {
