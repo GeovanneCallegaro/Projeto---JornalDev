@@ -28,5 +28,7 @@ const Admin = mongoose.model(
             type: String,
             required: true
         }
-    })
+    }, {timestamp: true})
 )
+
+module.exports = Admin
