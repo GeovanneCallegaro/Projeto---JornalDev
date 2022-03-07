@@ -16,9 +16,11 @@ app.use(cors( {
 app.use(express.static('public'))
 
 // Routes
-const UserRoutes = require('./routes/userRoutes')
+const UserRoutes = require('./routes/UserRoutes')
+const AdminRoutes = require('./routes/AdminRoutes')
 
 app.use('/users', UserRoutes)
+app.use('/admin', AdminRoutes)
 
 // start server
 app.listen(5000)
