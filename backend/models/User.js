@@ -24,7 +24,7 @@ const User = mongoose.model(
             type: Boolean, 
             required: true
         },
-        function: {
+        occupation: {
             type: String, 
             required: true
         }
