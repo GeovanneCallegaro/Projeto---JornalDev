@@ -27,7 +27,8 @@ const User = mongoose.model(
         occupation: {
             type: String, 
             required: true
-        }
+        }, 
+        posts: Object
     }, {timestamps: true})
 )
 
