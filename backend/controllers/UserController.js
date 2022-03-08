@@ -75,7 +75,7 @@ module.exports = class UserController {
             email, 
             password: passwordHash, 
             admin: false, 
-            function: 'usuário'
+            occupation: 'usuário'
         })
 
         try {

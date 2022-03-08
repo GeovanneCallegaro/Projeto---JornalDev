@@ -37,6 +37,42 @@ module.exports = class AdminController {
         })
     }
 
+    static async deleteUserById(req, res) {
+        const id = req.params.id 
+
+        // check if id is valid
+        if(!ObjectId.isValid(id)) {
+            res.status(422).json({
+                message: 'ID inválido!'
+            })
+            return
+        }
+
+        // check if user exists
+        const user = await User.findOne({_id: id})
+
+        if(!user) {
+            res.status(404).json({
+                message: 'Usuário não existe!'
+            })
+            return
+        }
+
+        // check if user is not a admin
+        if(user.admin === true) {
+            res.status(402).json({
+                message: 'Não é possível excluir outro admin!'
+            })
+            return
+        }
+
+        await User.findByIdAndDelete(id)
+
+        res.status(200).json({
+            message: 'O usuário foi deletado com sucesso!'
+        })
+    }
+
     static async editUser(req, res) {
         const id = req.params.id 
 
@@ -48,7 +84,7 @@ module.exports = class AdminController {
             return
         }
 
-        const {password, admin, occupation} = req.body
+        const { admin, occupation } = req.body
         const uptadedData = {}
 
         // check if user exists
