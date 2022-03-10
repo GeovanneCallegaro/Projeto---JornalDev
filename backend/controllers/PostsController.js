@@ -87,4 +87,12 @@ module.exports = class PostsController {
             posts: posts
         })
     }
+
+    static async getAllPosts(req, res) {
+        const posts = await Posts.find().sort('-createdAt')
+
+        res.status(200).json({
+            posts: posts
+        })
+    }
 }
