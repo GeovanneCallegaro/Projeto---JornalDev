@@ -73,5 +73,18 @@ module.exports = class PostsController {
         res.status(200).json({
             post: post
         })
+
+    }
+
+    static async getAllPostUser(req, res) {
+        // get user by token
+        const token = getToken(req)
+        const user = await getUserByToken(token)
+
+        const posts = await Posts.find({'user.id': user._id}).sort('-createdAt')
+
+        res.status(200).json({
+            posts: posts
+        })
     }
 }

@@ -7,5 +7,6 @@ const checkOccupationUser = require('../helpers/verifyOccupationIsNewsman')
 
 router.post('/createnotice', checkToken, checkOccupationUser, PostsController.createNewNotice)
 router.get('/:id', checkToken, checkOccupationUser, PostsController.getPostById)
+router.get('/user/:id', checkToken, checkOccupationUser, PostsController.getAllPostUser)
 
 module.exports = router
