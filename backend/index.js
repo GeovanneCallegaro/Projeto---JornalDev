@@ -18,11 +18,11 @@ app.use(express.static('public'))
 // Routes
 const UserRoutes = require('./routes/UserRoutes')
 const AdminRoutes = require('./routes/AdminRoutes')
-const NewsmanRoutes = require('./routes/NewsmanRoutes')
+const PostsRoutes = require('./routes/PostsRoutes')
 
 app.use('/users', UserRoutes)
 app.use('/admin', AdminRoutes)
-app.use('/newsman', NewsmanRoutes)
+app.use('/posts', PostsRoutes)
 
 // start server
 app.listen(5000)

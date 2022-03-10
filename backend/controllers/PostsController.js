@@ -1,9 +1,12 @@
 const getToken = require("../helpers/getToken")
 const getUserByToken = require("../helpers/getUserByToken")
-const Post = require("../models/Posts")
+const Posts = require("../models/Posts")
+
+const ObjectId = require('mongoose').Types.ObjectId
 
 
-module.exports = class NewsmanController {
+
+module.exports = class PostsController {
     static async createNewNotice(req, res) {
         const {title, subtitle, theme} = req.body
 
@@ -30,7 +33,7 @@ module.exports = class NewsmanController {
         const token = getToken(req)
         const user = await getUserByToken(token)
 
-        const post = new Post({
+        const post = new Posts({
             title, 
             subtitle, 
             theme,
@@ -46,5 +49,29 @@ module.exports = class NewsmanController {
         } catch(err) {
             res.status(402).json({ message: err})
         }
+    }
+
+    static async getPostById(req, res) {
+        const id = req.params.id
+
+        // check if id is valid
+        if(!ObjectId.isValid(id)) {
+            res.status(422).json({ message: 'ID inválido!'})
+            return
+        }
+
+        // check if post exists
+        const post = await Posts.findOne({_id: id})
+
+        if(!post) {
+            res.status(422).json({
+                message: 'Post não encontrado!'
+            })
+            return
+        }
+
+        res.status(200).json({
+            post: post
+        })
     }
 }
