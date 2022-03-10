@@ -1,0 +1,92 @@
+.headerContainer {
+    max-height: 200px;
+    min-height: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.socialMediaContainer {
+    font-size: 1.8rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.socialMediaIcon {
+    padding: 5px;
+    transition: 200ms;
+}
+
+.socialMediaIcon:hover {
+    font-size: 2.1rem;
+    cursor: pointer;
+}
+
+.titleContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.titleContainer h1 {
+    margin-right: 20px;
+    font-family: 'League Ghotic', sans-serif;
+    font-size: 2.4rem;
+    height: 30px;
+}
+
+.titleContainer button {
+    outline: none;
+    border-radius: 3px;
+    background-color: red;
+    border: none;
+    width: 100px;
+    height: 30px;
+    padding: 5px 15px;
+    font-size: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    transition: 500ms;
+}
+
+.titleContainer button:hover {
+    cursor: pointer;
+    background-color: #000000;
+}
+
+/* MENU SECTION */
+
+.menuSection {
+    max-height: 200px;
+    min-height: 100px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.menuSectionItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 300;
+}
+
+.menuSectionItem p {
+    padding: 10px 15px;
+}
+
+.menuSection p:hover {
+    color: #ffffff;
+    background-color: #000000;
+    cursor: pointer;
+    border-radius: 10px;
+}

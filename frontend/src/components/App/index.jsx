@@ -1,9 +1,9 @@
-
+import { Home } from "../layout/Home";
 
 function App() {
   return (
     <div className="App">
-      <h1>Olá, mundo!</h1>
+      <Home></Home>
     </div>
   );
 }
