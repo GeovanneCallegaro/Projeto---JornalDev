@@ -75,7 +75,15 @@ module.exports = class UserController {
             email, 
             password: passwordHash, 
             admin: false, 
-            occupation: 'usuário'
+            occupation: 'usuário',
+            posts: [
+                {
+                    title: '', 
+                    subtitle: '', 
+                    theme: '', 
+                    imageThumb: ''
+                },
+            ]
         })
 
         try {

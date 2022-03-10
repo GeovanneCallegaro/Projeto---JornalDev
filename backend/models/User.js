@@ -28,7 +28,6 @@ const User = mongoose.model(
             type: String, 
             required: true
         }, 
-        posts: Object
     }, {timestamps: true})
 )
 
