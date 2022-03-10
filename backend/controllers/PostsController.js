@@ -95,4 +95,70 @@ module.exports = class PostsController {
             posts: posts
         })
     }
+
+    static async editPosts(req, res) {
+        const id = req.params.id 
+
+        // check if id is valid
+        if(!ObjectId.isValid(id)) {
+            res.status(422).json({ message: 'ID inválido!'})
+            return
+        }
+
+        const {title, subtitle, theme} = req.body
+        const updatedNotice = {}
+
+        // check if posts exist
+        const post = await Posts.findOne({'_id': id})
+
+        if(!post) {
+            res.status(422).json({
+                message: 'Post não encontrado!'
+            })
+            return
+        }
+
+        // check if logged user registered the post
+        const token = getToken(req)
+        const user = await getUserByToken(token)
+
+        if(post.user.id.toString() !== user._id.toString()) {
+            res.status(402).json({
+                message: 'O usuário não cadastrou esse post!'
+            })
+            return
+        }
+
+        // validations
+        if(!title) {
+            res.status(402).json({
+                message: 'O título é obrigatório!'
+            })
+            return
+        } else {
+            updatedNotice.title = title
+        }
+
+        if(!subtitle) {
+            res.status(402).json({
+                message: 'O subtítulo é obrigatório!'
+            })
+            return
+        } else {
+            updatedNotice.subtitle = subtitle
+        }
+
+        if(!theme) {
+            res.status(402).json({
+                message: 'O tema é obrigatório!'
+            })
+            return
+        } else {
+            updatedNotice.theme = theme
+        }
+
+        await Posts.findByIdAndUpdate(id, updatedNotice)
+        
+        res.status(200).json({message: 'Post atualizado com sucesso!'})
+    }
 }

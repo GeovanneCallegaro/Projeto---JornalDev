@@ -9,5 +9,6 @@ router.post('/createnotice', checkToken, checkOccupationUser, PostsController.cr
 router.get('/:id', checkToken, checkOccupationUser, PostsController.getPostById)
 router.get('/user/:id', checkToken, checkOccupationUser, PostsController.getAllPostUser)
 router.get('', PostsController.getAllPosts)
+router.patch('/user/editnotice/:id', checkToken, checkOccupationUser, PostsController.editPosts)
 
 module.exports = router
