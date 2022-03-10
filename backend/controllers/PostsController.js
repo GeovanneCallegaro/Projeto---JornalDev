@@ -118,7 +118,7 @@ module.exports = class PostsController {
             return
         }
 
-        // check if logged user registered the post
+        // checking if the logged in user registered the post
         const token = getToken(req)
         const user = await getUserByToken(token)
 
@@ -160,5 +160,40 @@ module.exports = class PostsController {
         await Posts.findByIdAndUpdate(id, updatedNotice)
         
         res.status(200).json({message: 'Post atualizado com sucesso!'})
+    }
+
+    static async deletePostById(req, res) {
+        const id = req.params.id
+
+        // check if id is valid 
+        if(!ObjectId.isValid(id)) {
+            res.status(422).json({ message: 'ID inválido!'})
+            return
+        }
+
+        // check if posts exists
+        const post = await Posts.findOne({_id: id})
+
+        if(!post) {
+            res.status(402).json({
+                message: 'Post não encontrado!'
+            })
+            return
+        }
+
+        // checking if the logged in user registered the post
+        const token = getToken(req)
+        const user = await getUserByToken(token)
+
+        if(post.user.id.toString() !== user._id.toString()) {
+            res.status(402).json({ message: 'Não foi possível concluir essa ação!'})
+            return
+        }
+
+        await Posts.findByIdAndDelete(id)
+
+        res.status(200).json({
+            message: 'Post excluído com sucesso!'
+        })
     }
 }
