@@ -8,7 +8,7 @@ import styles from './Header.module.css'
 export const Header = () => {
     return (
         <>
-        <header className={styles.headerContainer}>
+        <header className={styles.headerContainer} id="idTop">
             <div className={styles.socialMediaContainer}>
                 <div className={styles.socialMediaIcon}><FaFacebookF /></div>
                 <div className={styles.socialMediaIcon}><FaTwitter /></div>
