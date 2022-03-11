@@ -2,6 +2,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import { Home } from "../Home";
 import { Login } from '../Auth/Login'
+import { Register } from '../Auth/Register';
 
 import {UserProvider} from '../../context/userContext'
 
@@ -10,6 +11,9 @@ function App() {
     <Router>
       <UserProvider>
         <Switch>
+          <Route path="/users/register">
+            <Register></Register>
+          </Route>
           <Route path="/users/login">
             <Login></Login>
           </Route>

@@ -1,0 +1,12 @@
+section {
+    height: 100vh;
+    display: flex;
+}
+
+.backgroundImage {
+        background-image: url('../../../../public/images/scott-graham-5fNmWej4tAA-unsplash.jpg');
+        background-position: center center;
+        background-repeat: no-repeat;
+        width: 70%;
+        height: 100%;
+}
