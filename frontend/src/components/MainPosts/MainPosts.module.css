@@ -1,0 +1,46 @@
+.mainSectionPosts {
+    max-width: 980px;
+    min-width: 300px;
+    width: 800px;
+    margin: 0 auto;
+    min-height: 300px;
+}
+
+.postItem {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+    min-height: 200px;
+    color: #ffffff;
+}
+
+.elementPost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 150px;
+    background-color: #000000;
+    transition: 1s;
+}
+
+
+.elementPost h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.3rem;
+    font-weight: 400;
+    line-height: 2.1rem;
+    margin-bottom: 25px;
+}
+
+.elementPost p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 200;
+}
+
+.elementPost:hover {
+    cursor: pointer;
+    transform: rotate(2deg);
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+}

@@ -17,7 +17,7 @@ export const Header = () => {
             </div>
             <div className={styles.titleContainer}>
                 <h1>LOGO</h1>
-                <button>Assinar</button>
+                <button>Login</button>
             </div>
         </header>
         <section className={styles.menuSection} >
