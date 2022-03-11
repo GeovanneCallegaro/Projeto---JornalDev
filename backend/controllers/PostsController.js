@@ -196,4 +196,20 @@ module.exports = class PostsController {
             message: 'Post excluído com sucesso!'
         })
     }
+
+    static async getPostsByTheme(req, res) {
+        const theme = req.params.name
+
+        const posts = await Posts.find({ 'theme': theme}).sort('-createdAt')
+
+        if(!posts) {
+            res.status(402).json({
+                message: 'Não há posts correspondentes a esse tema!'
+            })
+        }
+
+        res.status(200).json({
+            posts: posts
+        })
+    }
 }
