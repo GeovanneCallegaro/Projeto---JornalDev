@@ -4,6 +4,8 @@ import { FaInstagram } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
 import styles from './Header.module.css'
 
+import { Link } from 'react-router-dom'
+
 
 export const Header = () => {
     return (
@@ -17,7 +19,7 @@ export const Header = () => {
             </div>
             <div className={styles.titleContainer}>
                 <h1>LOGO</h1>
-                <button>Login</button>
+                <Link to="/users/login"><button>Login</button></Link>
             </div>
         </header>
         <section className={styles.menuSection} >
