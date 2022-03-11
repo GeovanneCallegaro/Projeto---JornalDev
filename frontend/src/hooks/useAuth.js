@@ -17,7 +17,7 @@ export const useAuth = () => {
 
     async function login(user) {
         try {
-            const data = await api.post('/users/login').then((response) => {
+            const data = await api.post('/users/login', user).then((response) => {
                 return response.data
             })
 

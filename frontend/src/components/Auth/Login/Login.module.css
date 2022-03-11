@@ -89,7 +89,7 @@
     margin-top: 90px;
 }
 
-.formLoginSection button {
+.formLoginSection .inputSubmit {
     width: 80%;
     height: 50px;
     text-align: center;
@@ -106,7 +106,7 @@
     transition: all 1s;
 }
 
-.formLoginSection button:hover {
+.formLoginSection .inputSubmit:hover {
     color: #FF5733;
     background-color: #ffffff;
     cursor: pointer;

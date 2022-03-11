@@ -20,7 +20,7 @@ export const MainPosts = () => {
                 <div className={styles.postItem}>
                     {posts.length > 0 && (
                         posts.map((post) => (
-                            <div className={styles.elementPost}>
+                            <div className={styles.elementPost} key={post._id}>
                                 <h2>{post.title}</h2>
                                 <p>{post.subtitle}</p>
                             </div>
