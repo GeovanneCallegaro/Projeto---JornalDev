@@ -53,8 +53,8 @@
 .iconEye, .iconEyeSlash {
     position: absolute;
     margin-left: 310px;
-    margin-top: 149px;
-    font-size: 1.4rem;
+    margin-top: 144px;
+    font-size: 1.6rem;
 }
 
 .iconEye:hover, .iconEyeSlash:hover {
@@ -68,11 +68,21 @@
 .formLoginSection .firstInput, .secondInput {
     margin: 0 auto;
     margin-bottom: 15px;
-    border-radius: 3px;
 
     width: 80%;
     height: 10px;
     padding: 15px;
+
+    border: none;
+    border-bottom: 1px solid #000000;
+    
+    transition: all 1s;
+}
+
+.firstInput:focus, .secondInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 0;
+    border-bottom: 1px solid #cccccc;
 }
 
 .formLoginSection .firstInput {

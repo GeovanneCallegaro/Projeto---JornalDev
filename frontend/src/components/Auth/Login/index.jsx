@@ -34,7 +34,6 @@ export const Login = () => {
                 <Link to="/"><FaArrowLeft className={styles.icon}></FaArrowLeft></Link>
             </div>
             <div className={styles.loginSection}>
-                <h2>Login</h2>
                 <div className={styles.formLoginSection}>
                     <form>
                         <input type="email" name="email" placeholder='Digite seu email' className={styles.firstInput} autoFocus/>
