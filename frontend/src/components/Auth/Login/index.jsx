@@ -20,8 +20,6 @@ export const Login = () => {
         setUser({...user, [e.target.name]: e.target.value})
     }
 
-
-
     const handleIconChange = () => {
         const inputPassword = document.querySelector('.Login_secondInput__8MOBa')
         const icon = document.querySelector('.Login_iconEye__3E-db')

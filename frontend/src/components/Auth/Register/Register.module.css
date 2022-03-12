@@ -3,10 +3,161 @@ section {
     display: flex;
 }
 
+.formSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 30%;
+    background-color: rgba(204, 204, 204, 0.1);
+}
+
+.containerArrow {
+    background-color: rgba(204, 204, 204, 0.1);
+    display: flex;
+}
+
+.arrowLeftIcon {
+    font-size: 1.6rem;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.textArrow {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6rem;
+    color: #cccccc;
+    min-width: 100px;
+
+    margin-top: 8px;
+}
+
+.arrowLeftIcon:hover {
+    cursor: pointer;
+}
+
+.formElement {
+    background-color: #ffffff;
+    height: 400px;
+    width: 400px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.emailIcon {
+    position: absolute;
+    margin-left: 320px;
+    margin-top: 153px;
+    font-size: 1.6rem;
+}
+
+.userIcon {
+    position: absolute;
+    margin-left: 320px;
+    margin-top: 60px;
+    font-size: 1.6rem;
+}
+
+.ageIcon {
+    position: absolute;
+    margin-left: 320px;
+    margin-top: 108px;
+    font-size: 1.6rem;
+}
+
+.iconEye, .iconEyeSlash {
+    position: absolute;
+    margin-left: 310px;
+    margin-top: 190px;
+    font-size: 1.6rem;
+}
+
+.iconEyeConfirm, .iconEyeSlashConfirm {
+    position: absolute;
+    margin-left: 310px;
+    margin-top: 235px;
+    font-size: 1.6rem;
+}
+
+.iconEye:hover, .iconEyeSlash:hover, .iconEyeConfirm:hover, .iconEyeSlashConfirm:hover {
+    cursor: pointer;
+}
+
+.iconEyeSlash, .iconEyeSlashConfirm {
+    display: none;
+}
+
+.formElement form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.formElement form input {
+    margin: 0 auto;
+    margin-bottom: 15px;
+
+    width: 80%;
+    height: 10px;
+    padding: 15px;
+
+    border: none;
+    border-bottom: 1px solid #000000;
+    
+    transition: all 1s;
+}
+
+.formElement form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+.formElement .inputName {
+    margin-top: 40px;
+}
+
+.formElement .inputSubmit {
+    width: 80%;
+    height: 50px;
+    text-align: center;
+    margin: 0 auto;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    background-color: #FF5733;
+
+    transition: all 1s;
+}
+
+.formElement .inputSubmit:hover {
+    color: #FF5733;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
 .backgroundImage {
         background-image: url('../../../../public/images/scott-graham-5fNmWej4tAA-unsplash.jpg');
         background-position: center center;
         background-repeat: no-repeat;
         width: 70%;
         height: 100%;
+}
+
+.passwordInput {
+    border: #000000;
+}
+
+.confirmPasswordInput {
+    border: #000000;
 }

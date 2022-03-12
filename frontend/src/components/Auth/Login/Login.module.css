@@ -26,13 +26,6 @@
     background-color: rgba(204, 204, 204, 0.1);
 }
 
-.loginSection h2 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    margin-bottom: 50px;
-    font-size: 4rem;
-}
-
 .formLoginSection {
     background-color: #ffffff;
     height: 400px;
