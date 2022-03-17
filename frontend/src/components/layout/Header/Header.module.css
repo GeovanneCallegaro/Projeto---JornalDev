@@ -90,3 +90,20 @@
     cursor: pointer;
     border-radius: 10px;
 }
+
+/*WHITE E DARK MOOD*/
+
+.sunIcon, .moonIcon {
+    margin-left: 25px;
+    font-size: 1.2rem;
+    transition: 1s;
+}
+
+.sunIcon:hover, .moonIcon:hover {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.moonIcon {
+    display: none;
+}
