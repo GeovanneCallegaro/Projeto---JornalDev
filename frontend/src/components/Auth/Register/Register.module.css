@@ -77,19 +77,19 @@ section {
     font-size: 1.6rem;
 }
 
-.iconEyeConfirm, .iconEyeSlashConfirm {
+.iconEyeConfirm, .iconEyeSlashConfirm2 {
     position: absolute;
     margin-left: 310px;
     margin-top: 235px;
     font-size: 1.6rem;
 }
 
-.iconEye:hover, .iconEyeSlash:hover, .iconEyeConfirm:hover, .iconEyeSlashConfirm:hover {
-    cursor: pointer;
+.iconEyeSlash, .iconEyeSlashConfirm2 {
+    display: none;
 }
 
-.iconEyeSlash, .iconEyeSlashConfirm {
-    display: none;
+.iconEye:hover, .iconEyeSlash:hover, .iconEyeConfirm:hover, .iconEyeSlashConfirm2:hover {
+    cursor: pointer;
 }
 
 .formElement form {

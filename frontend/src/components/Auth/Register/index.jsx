@@ -17,7 +17,6 @@ export const Register = () => {
         }
     }
 
-
     const handleSlashIconChange = () => {
         const inputPassword = document.querySelector('.Register_passwordInput__0GDhQ')
         const icon = document.querySelector('.Register_iconEye__H7Kmi')
@@ -31,26 +30,26 @@ export const Register = () => {
     }
 
     const handleIconChangeConfirm = () => {
-        const inputPassword = document.querySelector('.Register_confirmPasswordInput__Aeqyh')
-        const icon = document.querySelector('.Register_iconEyeConfirm__1IMjH')
-        const iconSlash = document.querySelector('.Register_iconEyeSlashConfirm__4I+-j')
+        const inputConfirmPassword = document.querySelector('.Register_confirmPasswordInput__Aeqyh')
+        const iconConfirm = document.querySelector('.Register_iconEyeConfirm__1IMjH')
+        const iconSlashConfirm = document.querySelector('.Register_iconEyeSlashConfirm2__6KEO2')
 
-        inputPassword.type = 'text'
-        if(inputPassword.type !== 'password') {
-            iconSlash.style.display = 'block'
-            icon.style.display = 'none'
+        inputConfirmPassword.type = 'text'
+        if(inputConfirmPassword.type !== 'password') {
+            iconSlashConfirm.style.display = 'block'
+            iconConfirm.style.display = 'none'
         }
     }
 
     const handleSlashIconChangeConfirm = () => {
-        const inputPassword = document.querySelector('.Register_confirmPasswordInput__Aeqyh')
-        const icon = document.querySelector('.Register_iconEyeConfirm__1IMjH')
-        const iconSlash = document.querySelector('.Register_iconEyeSlashConfirm__4I+-j')
+        const inputConfirmPassword = document.querySelector('.Register_confirmPasswordInput__Aeqyh')
+        const iconConfirm = document.querySelector('.Register_iconEyeConfirm__1IMjH')
+        const iconSlashConfirm = document.querySelector('.Register_iconEyeSlashConfirm2__6KEO2')
 
-        inputPassword.type = 'password'
-        if(inputPassword.type === 'password') {
-            iconSlash.style.display = 'none'
-            icon.style.display = 'block'
+        inputConfirmPassword.type = 'password'
+        if(inputConfirmPassword.type === 'password') {
+            iconSlashConfirm.style.display = 'none'
+            iconConfirm.style.display = 'block'
         }
     }
 
@@ -75,7 +74,7 @@ export const Register = () => {
                         <FaEye className={styles.iconEye} onClick={handleIconChange}/>
                         <FaEyeSlash className={styles.iconEyeSlash} onClick={handleSlashIconChange} />
                         <FaEye className={styles.iconEyeConfirm} onClick={handleIconChangeConfirm}/>
-                        <FaEyeSlash className={styles.iconEyeSlashConfirm} onClick={handleSlashIconChangeConfirm} />
+                        <FaEyeSlash className={styles.iconEyeSlashConfirm2} onClick={handleSlashIconChangeConfirm} />
                     </form>
                 </div>
             </div>
