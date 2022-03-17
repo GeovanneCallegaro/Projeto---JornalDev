@@ -1,9 +1,26 @@
 import styles from './Register.module.css'
 
+import {Link} from 'react-router-dom'
+
+import { useContext, useState } from 'react'
+
 import {FaEye, FaEyeSlash, FaArrowLeft} from 'react-icons/fa'
 import {AiOutlineMail, AiOutlineUser, AiTwotoneTool} from 'react-icons/ai'
 
+import { Context } from '../../../context/userContext'
+
 export const Register = () => {
+    const [user, setUser] = useState({})
+    const {register} = useContext(Context)
+
+    const handleChange = (e) => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        register(user)
+    }
 
     const handleIconChange = () => {
         const inputPassword = document.querySelector('.Register_passwordInput__0GDhQ')
@@ -57,19 +74,19 @@ export const Register = () => {
         <section>
             <div className={styles.backgroundImage}></div>
                 <div className={styles.containerArrow}>
-                    <FaArrowLeft className={styles.arrowLeftIcon} /> <p className={styles.textArrow}>Back to home</p>
+                    <Link to="/"><FaArrowLeft className={styles.arrowLeftIcon} /></Link>
                 </div>
             <div className={styles.formSection}>
                 <div className={styles.formElement}>
                         <AiOutlineMail className={styles.emailIcon} />
                         <AiOutlineUser className={styles.userIcon} />
                         <AiTwotoneTool className={styles.ageIcon}/>
-                    <form>
-                        <input type="text" name='name' placeholder='Digite seu nome' autoFocus className={styles.inputName}/>
-                        <input type="number" name='age' placeholder='Digite sua idade'/>
-                        <input type="email" name='email' placeholder='Digite seu email'/>
-                        <input type="password" name='password' placeholder='Digite sua senha' className={styles.passwordInput}/>
-                        <input type="password" name='confirmPassword' placeholder='Digite a senha novamente' className={styles.confirmPasswordInput}/>
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" name='name' placeholder='Digite seu nome' autoFocus className={styles.inputName} onChange={handleChange}/>
+                        <input type="number" name='age' placeholder='Digite sua idade' onChange={handleChange}/>
+                        <input type="email" name='email' placeholder='Digite seu email' onChange={handleChange}/>
+                        <input type="password" name='password' placeholder='Digite sua senha' className={styles.passwordInput} onChange={handleChange}/>
+                        <input type="password" name='confirmPassword' placeholder='Digite a senha novamente' className={styles.confirmPasswordInput} onChange={handleChange}/>
                         <input type="submit" value='CADASTRE-SE' className={styles.inputSubmit}/>
                         <FaEye className={styles.iconEye} onClick={handleIconChange}/>
                         <FaEyeSlash className={styles.iconEyeSlash} onClick={handleSlashIconChange} />

@@ -27,11 +27,23 @@ export const useAuth = () => {
         }
     }
 
+    async function register(user) {
+        try {
+            const data = await api.post('/users/register', user).then((response) => {
+                return response.data
+            })
+
+            await authUser(data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
     async function authUser(data) {
         setAuthenticated(true)
         localStorage.setItem('token', JSON.stringify(data.token))
         history.push('/')
     }
 
-    return {login, authenticated}
+    return {login, register, authenticated}
 }
