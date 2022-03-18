@@ -13,6 +13,16 @@ export const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        const inputNull = document.querySelector('.Login_nullInput__5pe9b')
+
+        if(user.email || user.password === '') {
+            inputNull.style.display = 'block'
+            setTimeout(() => {
+                inputNull.style.display = 'none'
+            }, 2000)
+        }
+
         login(user)
     }
 
@@ -50,11 +60,16 @@ export const Login = () => {
                 <Link to="/"><FaArrowLeft className={styles.icon}></FaArrowLeft></Link>
             </div>
             <div className={styles.loginSection}>
+                    <div className={styles.nullInput}>
+                        <p>Insira todos os dados!</p>
+                    </div>
                 <div className={styles.formLoginSection}>
                     <form onSubmit={handleSubmit}>
                         <input type="email" name="email"  placeholder='Digite seu email' className={styles.firstInput} autoFocus onChange={handleChange}/>
                         <input type="password" name="password" placeholder='Digite sua senha' className={styles.secondInput} onChange
-                        ={handleChange}/><FaEye className={styles.iconEye} onClick={handleIconChange}/><FaEyeSlash className={styles.iconEyeSlash} onClick={handleSlashIconChange}></FaEyeSlash>
+                        ={handleChange}/>
+                        <FaEye className={styles.iconEye} onClick={handleIconChange}/>
+                        <FaEyeSlash className={styles.iconEyeSlash} onClick={handleSlashIconChange}></FaEyeSlash>
                         <input type='submit' value='ENTRAR' className={styles.inputSubmit}/>
                     </form>
                     <div className={styles.registerArea}>

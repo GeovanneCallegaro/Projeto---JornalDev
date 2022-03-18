@@ -19,6 +19,16 @@ export const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        const inputNull = document.querySelector('.Register_nullInput__eo1p-')
+
+        if(user.name || user.email || user.age || user.password || user.confirmPassword === '') {
+            inputNull.style.display = 'block'
+            setTimeout(() => {
+                inputNull.style.display = 'none'
+            }, 2000)
+        }
+
         register(user)
     }
 
@@ -77,6 +87,9 @@ export const Register = () => {
                     <Link to="/"><FaArrowLeft className={styles.arrowLeftIcon} /></Link>
                 </div>
             <div className={styles.formSection}>
+                <div className={styles.nullInput}>
+                    <p>Todos os dados devem ser preenchidos!</p>
+                </div>
                 <div className={styles.formElement}>
                         <AiOutlineMail className={styles.emailIcon} />
                         <AiOutlineUser className={styles.userIcon} />
