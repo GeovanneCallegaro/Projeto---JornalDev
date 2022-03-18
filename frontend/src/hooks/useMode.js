@@ -1,19 +1,15 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 export const useMode = () => {
     const [themeLight, setTheme] = useState(true)
 
-    const setterTheme = () => {
+    const setterTheme = useCallback(() => {
         if(themeLight === true) {
-            setTheme((e) => !e)
+            setTheme((s) => !s)
         } else {
-            setTheme((e) => !e)
+            setTheme((s) => !s)
         }
-
-        return themeLight
-    }
-
-    console.log(themeLight)
+    }, [themeLight])
 
     return {setterTheme}
 }
