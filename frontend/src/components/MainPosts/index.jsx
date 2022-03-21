@@ -10,9 +10,13 @@ import { useContext } from 'react'
 import { Context } from '../../context/userContext'
 
 export const MainPosts = () => {
-    const {authenticated} = useContext(Context)
+    const {authenticated, logout} = useContext(Context)
 
     const [posts, setPosts] = useState([])
+
+    const refreshPage = () => {
+        window.location.reload(false)
+    }
 
     useEffect(() => {
         api.get('/posts').then((response) => {
@@ -45,7 +49,7 @@ export const MainPosts = () => {
                             <div className={styles.containerUserAuthenticated}>
                                 <h2>Sessão do usuário!</h2>
                                 <button>Editar dados!</button>
-                                <button className={styles.logoutButton}>Logout</button>
+                                <button className={styles.logoutButton} onClick={logout}>Logout</button>
                             </div>
                         </>
                     ) : (

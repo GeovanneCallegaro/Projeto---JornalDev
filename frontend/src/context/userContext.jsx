@@ -5,11 +5,11 @@ import { useMode } from '../hooks/useMode'
 export const Context = createContext()
 
 export const UserProvider = ({children}) => {
-    const {login, register, authenticated} = useAuth()
+    const {login, register, logout, authenticated} = useAuth()
     const {setterTheme} = useMode()
 
     return (
-        <Context.Provider value={{login, register, setterTheme, authenticated}}>
+        <Context.Provider value={{login, register, logout, setterTheme, authenticated}}>
             {children}
         </Context.Provider>
     )

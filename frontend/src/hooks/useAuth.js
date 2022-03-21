@@ -45,5 +45,13 @@ export const useAuth = () => {
         history.push('/')
     }
 
-    return {login, register, authenticated}
+    async function logout() {
+        setAuthenticated(false)
+        localStorage.removeItem('token')
+        api.defaults.Authorization = undefined
+        history.push('/')
+        window.location.reload()
+    }
+
+    return {login, register, logout, authenticated}
 }
