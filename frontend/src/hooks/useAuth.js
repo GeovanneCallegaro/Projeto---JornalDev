@@ -1,10 +1,12 @@
 import api from '../utils/api'
 import {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
+import {useFlashMessage} from './useFlashMessage'
 
 export const useAuth = () => {
     const [authenticated, setAuthenticated] = useState()
     const history = useHistory()
+    const {setFlashMessage} = useFlashMessage()
     
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -16,15 +18,21 @@ export const useAuth = () => {
     }, [])
 
     async function login(user) {
+        let messageType = 'sucess'
+        let messageText = 'Login realizado com sucesso!'
+
         try {
             const data = await api.post('/users/login', user).then((response) => {
                 return response.data
             })
 
             await authUser(data)
-        } catch(err) {
-            console.log(err)
+        } catch(error) {
+            messageText = error.response.data.message
+            messageType = 'error' 
         }
+
+        setFlashMessage(messageText, messageType)
     }
 
     async function register(user) {
@@ -35,7 +43,8 @@ export const useAuth = () => {
 
             await authUser(data)
         } catch (err) {
-            console.log(err)
+            console.log(err.response.data.message)
+            return err.message.data
         }
     }
 

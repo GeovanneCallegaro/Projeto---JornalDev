@@ -13,16 +13,6 @@ export const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        const inputNull = document.querySelector('.Login_nullInput__5pe9b')
-
-        if(user.email || user.password === '') {
-            inputNull.style.display = 'block'
-            setTimeout(() => {
-                inputNull.style.display = 'none'
-            }, 2000)
-        }
-
         login(user)
     }
 
