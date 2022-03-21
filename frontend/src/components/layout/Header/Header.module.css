@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    margin-bottom: 60px;
 }
 
 .socialMediaContainer {
@@ -60,50 +61,7 @@
     background-color: #000000;
 }
 
-/* MENU SECTION */
-
-.menuSection {
-    max-height: 200px;
-    min-height: 100px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.menuSectionItem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.9rem;
-    font-weight: 300;
-}
-
-.menuSectionItem p {
-    padding: 10px 15px;
-}
-
-.menuSection p:hover {
-    color: #ffffff;
-    background-color: #000000;
+.iconMenuAuthenticated {
+    font-size: 1.6rem;
     cursor: pointer;
-    border-radius: 10px;
-}
-
-/*WHITE E DARK MOOD*/
-
-.sunIcon, .moonIcon {
-    margin-left: 25px;
-    font-size: 1.2rem;
-    transition: 1s;
-}
-
-.sunIcon:hover, .moonIcon:hover {
-    cursor: pointer;
-    font-size: 1.5rem;
-}
-
-.moonIcon {
-    display: none;
 }

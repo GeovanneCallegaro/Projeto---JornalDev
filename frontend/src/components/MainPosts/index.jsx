@@ -2,9 +2,16 @@ import api  from '../../utils/api'
 
 import {useEffect, useState} from 'react'
 
+import {HiMenu} from 'react-icons/hi'
+
 import styles from './MainPosts.module.css'
 
+import { useContext } from 'react'
+import { Context } from '../../context/userContext'
+
 export const MainPosts = () => {
+    const {authenticated} = useContext(Context)
+
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
@@ -31,6 +38,22 @@ export const MainPosts = () => {
                     )}
                 </div>
             </div>
+
+            <aside>
+                    {authenticated ? (
+                        <>
+                            <div className={styles.containerUserAuthenticated}>
+                                <h2>Sessão do usuário!</h2>
+                                <button>Editar dados!</button>
+                                <button className={styles.logoutButton}>Logout</button>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+
+                        </>
+                    )}
+            </aside>
         </section>
     )
 }

@@ -2,8 +2,10 @@ import { FaFacebookF } from 'react-icons/fa'
 import { FaTwitter } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
-import {BsSun, BsMoon } from 'react-icons/bs'
+import {HiMenu} from 'react-icons/hi'
+
 import styles from './Header.module.css'
+import mainStyle from '../../MainPosts/MainPosts.module.css'
 
 import { Link } from 'react-router-dom'
 
@@ -12,10 +14,22 @@ import { Context } from '../../../context/userContext'
 
 
 export const Header = () => {
-    const {setterTheme} = useContext(Context)
+    const {authenticated} = useContext(Context)
 
-    const handleTheme = () => {
-        setterTheme()
+    const handleMenu = () => {
+        const container = document.querySelector('.MainPosts_containerUserAuthenticated__T8Jwc')
+        const mainPosts = document.querySelector('.MainPosts_mainSectionPosts__6d8OB')
+
+
+        if(container.style.display !== 'block') {
+            container.style.display = 'block'
+            mainPosts.style.marginLeft = '590px'
+            mainPosts.style.width = '600px'
+        } else {
+            container.style.display = 'none'
+            mainPosts.style.width = '800px'
+            mainPosts.style.margin = '0 auto'
+        }
     }
 
     return (
@@ -28,23 +42,27 @@ export const Header = () => {
                 <div className={styles.socialMediaIcon}><FaGithub /></div>
             </div>
             <div className={styles.titleContainer}>
-                <h1>LOGO</h1>
-                <Link to="/users/login"><button>Login</button></Link>
-                <div className={styles.iconSetMode}>
-                    <BsSun className={styles.sunIcon} onClick={handleTheme}/>
-                    <BsMoon className={styles.moonIcon} />
-                </div>
+                {authenticated ? (
+                    <>
+                        <h1>LOGO</h1>
+                    </>
+                ) : (
+                    <>
+                        <h1>LOGO</h1>
+                        <Link to="/users/login"><button>Login</button></Link>
+                    </>
+                )}
+            </div>
+            <div>
+            {authenticated ? (
+                    <>
+                        <HiMenu className={styles.iconMenuAuthenticated} onClick={handleMenu}></HiMenu> 
+                    </>
+                ) : (
+                    <></>
+                )}
             </div>
         </header>
-        <section className={styles.menuSection} >
-            <div className={styles.menuSectionItem}>
-                <p>Assine! Primeiro mês com gratuidade</p>
-                <p>Futebol</p>
-                <p>Moda</p>
-                <p>Tecnologia</p>
-                <p>Mundo</p>
-            </div>
-        </section>
         </>
     )
 }
