@@ -12,6 +12,7 @@
 .headerContainer .iconHeader {
     font-size: 1.4rem;
     cursor: pointer;
+    transition: 1s;
 }
 
 .headerContainer h1 {
@@ -19,6 +20,10 @@
     font-size: 2.4rem;
     height: 30px;
     letter-spacing: 0.4rem;
+}
+
+.iconHeader:hover {
+    transform: rotate(30deg);
 }
 
 .formContainer {

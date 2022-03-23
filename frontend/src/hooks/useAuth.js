@@ -40,7 +40,7 @@ export const useAuth = () => {
         let messageText = 'Cadastro realizado com sucesso!'
 
         try {
-            const data = await api.post('/users/register', user).then((response) => {
+            await api.post('/users/register', user).then((response) => {
                 return response.data
             })
             history.push('/')
