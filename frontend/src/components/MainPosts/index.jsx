@@ -2,7 +2,7 @@ import api  from '../../utils/api'
 
 import {useEffect, useState} from 'react'
 
-import {HiMenu} from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 
 import styles from './MainPosts.module.css'
 
@@ -13,10 +13,6 @@ export const MainPosts = () => {
     const {authenticated, logout} = useContext(Context)
 
     const [posts, setPosts] = useState([])
-
-    const refreshPage = () => {
-        window.location.reload(false)
-    }
 
     useEffect(() => {
         api.get('/posts').then((response) => {
@@ -48,7 +44,7 @@ export const MainPosts = () => {
                         <>
                             <div className={styles.containerUserAuthenticated}>
                                 <h2>Sessão do usuário!</h2>
-                                <button>Editar dados!</button>
+                                <Link to="/users/profile"><button>Editar dados!</button></Link>
                                 <button className={styles.logoutButton} onClick={logout}>Logout</button>
                             </div>
                         </>

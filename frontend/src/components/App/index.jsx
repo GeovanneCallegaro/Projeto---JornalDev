@@ -4,6 +4,7 @@ import { Home } from "../Home";
 import { Login } from '../Auth/Login'
 import { Register } from '../Auth/Register';
 import { Message } from '../Message/Message.jsx'
+import { Profile } from '../User/Profile.jsx'
 
 import {UserProvider} from '../../context/userContext'
 
@@ -13,6 +14,9 @@ function App() {
       <UserProvider>
         <Message />
         <Switch>
+          <Route path="/users/profile">
+            <Profile></Profile>
+          </Route>
           <Route path="/users/register">
             <Register></Register>
           </Route>
