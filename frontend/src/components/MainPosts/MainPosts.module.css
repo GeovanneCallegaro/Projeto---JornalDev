@@ -88,8 +88,19 @@
     transition: ease-in 500ms;
 }
 
+.containerUserAuthenticated .createPost {
+    background-color: #16f346;
+    color: #ffffff;
+    margin-top: 15px;
+}
+
 .containerUserAuthenticated button:hover {
     color: #4545f8;
+    background-color: #ffffff;
+}
+
+.containerUserAuthenticated .createPost:hover {
+    color: #16f346;
     background-color: #ffffff;
 }
 

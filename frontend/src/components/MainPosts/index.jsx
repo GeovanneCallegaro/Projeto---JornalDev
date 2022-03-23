@@ -1,12 +1,10 @@
 import api  from '../../utils/api'
 
-import {useEffect, useState} from 'react'
-
 import { Link } from 'react-router-dom'
 
 import styles from './MainPosts.module.css'
 
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { Context } from '../../context/userContext'
 
 export const MainPosts = () => {
@@ -14,12 +12,26 @@ export const MainPosts = () => {
 
     const [posts, setPosts] = useState([])
 
+    const [token] = useState(localStorage.getItem('token') || '')
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        if(authenticated === true) {
+            api.get('/users/checkuser', {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }
+            }).then((response) => {
+                setUser(response.data)
+            })
+        }
+    }, [token, authenticated])
+
     useEffect(() => {
         api.get('/posts').then((response) => {
             setPosts(response.data.posts)
         })
     }, [])
-
 
     return (
         <section>
@@ -45,14 +57,15 @@ export const MainPosts = () => {
                             <div className={styles.containerUserAuthenticated}>
                                 <h2>Sessão do usuário!</h2>
                                 <Link to="/users/profile"><button>Editar dados!</button></Link>
+                                {user.occupation === "escritor" ? (
+                                    <>
+                                        <Link to="/posts/createpost"><button className={styles.createPost}>Escrever Posts</button></Link>
+                                    </>
+                                ) : (<></>)}
                                 <button className={styles.logoutButton} onClick={logout}>Logout</button>
                             </div>
                         </>
-                    ) : (
-                        <>
-
-                        </>
-                    )}
+                    ) : (<></>)}
             </aside>
         </section>
     )

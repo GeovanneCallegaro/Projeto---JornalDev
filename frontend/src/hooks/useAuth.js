@@ -31,7 +31,6 @@ export const useAuth = () => {
             messageText = error.response.data.message
             messageType = 'error' 
         }
-
         setFlashMessage(messageText, messageType)
     }
 
