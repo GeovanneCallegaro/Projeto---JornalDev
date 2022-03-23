@@ -1,14 +1,56 @@
 import {useFlashMessage} from '../../hooks/useFlashMessage'
+import { useState, useEffect } from 'react'
+import api from '../../utils/api'
 
 import styles from './Profile.module.css'
 
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 
 import {Footer} from '../layout/Footer/index'
 
 export const Profile = () => {
+    const [user, setUser] = useState({})
+    const [token] = useState(localStorage.getItem('token') || '')
+    const {setFlashMessage} = useFlashMessage()
+    const history = useHistory()
+
+    useEffect(() => {
+        api.get('users/checkuser', {
+            headers: {
+                Authorization: `Bearer: ${JSON.parse(token)}`
+            },
+        }).then((response) => {
+            setUser(response.data)
+        })
+        
+    }, [token])
+
+    const handleChange = (e) => {
+        setUser({...user, [e.target.name]: e.target.value})
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        let messageType = 'sucess'
+
+        const data = await api.patch(`/users/edituser/${user._id}`, user, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`,
+            }
+        }).then((response) => {
+            return response.data
+        }).catch((error) => {
+            messageType = 'error'
+            return error.response.data
+        })
+        
+        history.push('/')
+        setFlashMessage(data.message, messageType)
+    }
+    
     return (
         <>
             <header className={styles.headerContainer}>
@@ -18,12 +60,12 @@ export const Profile = () => {
             <div className={styles.formContainer}>
                 <div className={styles.formArea}>
                     <h2>EDITE SEUS DADOS</h2>
-                    <form>
-                        <input type="text" placeholder='Nome'/>
-                        <input type="number" placeholder='Idade'/>
-                        <input type="email" placeholder='Email'/>
-                        <input type="password" placeholder='Senha'/>
-                        <input type="password" placeholder='Confirmação de senha'/>
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" placeholder='Nome' name="name" onChange={handleChange} />
+                        <input type="number" placeholder='Idade' name='age'  onChange={handleChange} />
+                        <input type="email" placeholder='Email' name='email' onChange={handleChange} />
+                        <input type="password" placeholder='Senha' name='password'  onChange={handleChange}/>
+                        <input type="password" placeholder='Confirmação de senha' name='confirmPassword'  onChange={handleChange}/>
                         <input type="submit" value="Editar" className={styles.buttonSubmit}/>
                     </form>
                 </div>

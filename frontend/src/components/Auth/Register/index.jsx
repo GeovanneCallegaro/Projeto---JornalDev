@@ -19,16 +19,7 @@ export const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        const inputNull = document.querySelector('.Register_nullInput__eo1p-')
-
-        if(user.name || user.email || user.age || user.password || user.confirmPassword === '') {
-            inputNull.style.display = 'block'
-            setTimeout(() => {
-                inputNull.style.display = 'none'
-            }, 2000)
-        }
-
+        console.log(user)
         register(user)
     }
 

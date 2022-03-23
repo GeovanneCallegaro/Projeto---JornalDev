@@ -36,16 +36,21 @@ export const useAuth = () => {
     }
 
     async function register(user) {
+        let messageType = 'sucess'
+        let messageText = 'Cadastro realizado com sucesso!'
+
         try {
             const data = await api.post('/users/register', user).then((response) => {
                 return response.data
             })
-
-            await authUser(data)
+            history.push('/')
         } catch (err) {
-            console.log(err.response.data.message)
-            return err.message.data
+            messageType = 'error'
+            messageText = err.response.data.message
         }
+
+        
+        setFlashMessage(messageText, messageType)
     }
 
     async function authUser(data) {

@@ -172,8 +172,6 @@ module.exports = class UserController {
     }
 
     static async editUser(req, res) {
-        const id = mongoose.Types.ObjectId(req.params.id)
-
         // check if users exists 
         const token = getToken(req)
         const user = await getUserByToken(token)
@@ -183,32 +181,35 @@ module.exports = class UserController {
         // validations 
 
         if(!name) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'O nome é obrigatório!'
             })
+            return
         }
 
         user.name = name
 
         if(!age) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'A idade é obrigatória!'
             })
+            return
         }
 
         user.age = age
 
         if(!email) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'o email é obrigatório'
             })
+            return
         }
 
         // check if email has already taken
         const userExists = await User.findOne({email: email})
 
         if(user.email != email && userExists) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'O email já esta cadastrado!'
             })
             return
@@ -218,11 +219,11 @@ module.exports = class UserController {
 
         if(password !== confirmPassword) {
             res.status(422).json({ message: 'As senhas devem ser iguais' })
-            return
-            } else if(password === confirmPassword &&password != null) {
+            
+            } else if(password == confirmPassword && password != null) {
             //creating a password
-            const salt = await bcrypt.genSalt(12)
-            const passwordHash = await bcrypt.hash(password, salt)
+            const salt = await bycrpt.genSalt(12)
+            const passwordHash = await bycrpt.hash(password, salt)
             user.password = passwordHash
         }
 
