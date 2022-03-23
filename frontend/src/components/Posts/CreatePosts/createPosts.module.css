@@ -1,0 +1,111 @@
+.headerContainer {
+    margin: 15px auto;
+    max-width: 1080px;
+    margin-bottom: 60px;
+    
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.headerContainer .iconHeader {
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.headerContainer h1 {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 2.4rem;
+    height: 30px;
+    letter-spacing: 0.4rem;
+}
+
+.iconHeader:hover {
+    transform: rotate(30deg);
+}
+
+.formContainer {
+    margin: 0 auto;
+    max-width: 1080px;
+    min-height: 70vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+
+    min-width: 500px;
+    min-height: 55vh;
+
+    background-color: #ffffff;
+    box-shadow: 1px 1px 1px 1px #0000002a;
+    border-radius: 10px;
+}
+
+.formArea h2 {
+    margin-bottom: 70px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 2.1rem;
+}
+
+.formArea form {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 25vh;
+}
+
+.formArea form input {
+    width: 300px;
+    height: 30px;
+
+    padding: 15px;
+    margin-bottom: 20px;
+
+    border: none;
+    border-bottom: 1px solid #cccccc;
+
+    transition: all 1s;
+}
+
+.formArea form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 0;
+    border-bottom: 1px solid #000000;
+}
+
+.formArea form .buttonSubmit {
+    background-color: #64d805;
+    color: #ffffff;
+
+    cursor: pointer;
+
+    padding: 0;
+    height: 40px;
+    border-radius: 8px;
+    border: none;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.formArea form .buttonSubmit:hover {
+    background-color: #ffffff;
+    color: #64d805;
+    transition: ease-in-out 1s;
+}
+
+.formArea form .buttonSubmit:focus {
+    border: none;
+}

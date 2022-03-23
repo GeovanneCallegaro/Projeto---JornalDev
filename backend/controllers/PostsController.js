@@ -12,21 +12,24 @@ module.exports = class PostsController {
 
         // validations 
         if(!title) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'O título é obrigatório!'
             })
+            return
         }
 
         if(!subtitle) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'O subtítulo é obrigatório!'
             })
+            return
         }
 
         if(!theme) {
-            res.status(402).json({
+            res.status(422).json({
                 message: 'O tema da notícia é obrigatório!'
             })
+            return
         }
 
         // get news writer user
