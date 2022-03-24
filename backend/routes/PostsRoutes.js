@@ -8,9 +8,8 @@ const checkOccupationUser = require('../helpers/verifyOccupationIsNewsman')
 router.get('/myposts', checkToken, PostsController.getAllPostsUser)
 router.post('/createnotice', checkToken, checkOccupationUser, PostsController.createNewNotice)
 router.get('/:id', checkToken, checkOccupationUser, PostsController.getPostById)
-router.get('/?name', PostsController.getPostsByTheme)
 router.get('', PostsController.getAllPosts)
-router.patch('/user/editnotice/:id', checkToken, checkOccupationUser, PostsController.editPosts)
+router.patch('/editnotice/:id', checkToken, checkOccupationUser, PostsController.editPosts)
 router.delete('/:id', checkToken, checkOccupationUser, PostsController.deletePostById)
 
 module.exports = router

@@ -7,6 +7,7 @@ import { Message } from '../Message/Message.jsx'
 import { Profile } from '../User/Profile.jsx'
 import { CreatePosts } from '../Posts/CreatePosts';
 import { MyPosts } from '../Posts/MyPosts';
+import { EditPosts } from '../Posts/EditPosts';
 
 import {UserProvider} from '../../context/userContext'
 
@@ -16,6 +17,9 @@ function App() {
       <UserProvider>
         <Message />
         <Switch>
+          <Route path="/posts/editpost/:id">
+            <EditPosts></EditPosts>
+          </Route>
           <Route path="/posts/myposts">
             <MyPosts></MyPosts>
           </Route>

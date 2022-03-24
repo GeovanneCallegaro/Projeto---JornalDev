@@ -8,10 +8,13 @@ import { useEffect, useState } from 'react'
 
 import api from '../../../utils/api'
 
+import {useFlashMessage} from '../../../hooks/useFlashMessage'
+
 export const MyPosts = () => {
     const [posts, setPosts] = useState([])
     const [token] = useState(localStorage.getItem('token') || '')
     const [user, setUser] = useState({})
+    const {setFlashMessage} = useFlashMessage()
 
     useEffect(() => {
         const fetchUser = async () => {
@@ -40,6 +43,27 @@ export const MyPosts = () => {
         }
     }, [user, token])
 
+    const deletePost = (id) => {
+        let messageType = 'sucess'
+        let messageText = 'Post excluído com sucesso!'
+
+        api.delete(`/posts/${id}`, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`
+            }
+        }).then((response) => {
+            const updatedPosts = posts.filter((post) => post._id !== id)
+            setPosts(updatedPosts)
+            return response.data
+        }).catch((err) => {
+            messageType = 'error'
+            messageText = 'Algo deu errado!'
+            return err.response.data
+        })
+
+        setFlashMessage(messageText, messageType)
+    }
+
 
     return (
         <>
@@ -57,8 +81,8 @@ export const MyPosts = () => {
                                     <p>Subtitulo: {post.subtitle}</p>
                                 </div>
                                 <div className={styles.buttonsSection}>
-                                    <BiTrash className={styles.iconTrash}></BiTrash>
-                                    <BiEditAlt className={styles.iconEdit}></BiEditAlt>
+                                    <BiTrash className={styles.iconTrash} onClick={() => {deletePost(post._id)}}></BiTrash>
+                                    <Link to={`/posts/editpost/${post._id}`}><BiEditAlt className={styles.iconEdit}></BiEditAlt></Link>
                                 </div>
                             </div>
                     ))
