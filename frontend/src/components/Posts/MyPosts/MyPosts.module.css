@@ -1,0 +1,104 @@
+.headerContainer {
+    margin: 15px auto;
+    max-width: 1080px;
+    margin-bottom: 60px;
+    
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.headerContainer .iconHeader {
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.headerContainer h1 {
+    font-family: 'League Gothic', sans-serif;
+    font-size: 2.4rem;
+    height: 30px;
+    letter-spacing: 0.4rem;
+}
+
+.iconHeader:hover {
+    transform: rotate(30deg);
+}
+
+.sectionContainer {
+    max-width: 1080px;
+    margin: 0px auto;
+    height: 1000px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.sectionContainer .postsContainer {
+    display: flex;
+    flex-direction: column;
+
+    max-height: 100%;
+    max-width: 800px;
+    margin-top: 30px;
+}
+
+.sectionContainer .postsContainer .postItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 15px;
+
+    width: 600px;
+}
+
+.sectionContainer .postsContainer .postItem .textSection {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.sectionContainer .postsContainer .postItem .textSection h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.sectionContainer .postsContainer .postItem .textSection p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.sectionContainer .postsContainer .postItem .buttonsSection {
+    margin-right: 10px;
+    padding: 5px;
+
+    font-size: 1.8rem;
+    transition: color .3s ease-in-out;
+}
+
+.sectionContainer .postsContainer .postItem .buttonsSection .iconTrash {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.sectionContainer .postsContainer .postItem .buttonsSection .iconTrash {
+    margin-right: 10px;
+}
+
+.sectionContainer .postsContainer .postItem .buttonsSection .iconEdit:hover,
+.sectionContainer .postsContainer .postItem .buttonsSection .iconTrash:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    color: black;
+}
+
+.noPosts {
+    font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}

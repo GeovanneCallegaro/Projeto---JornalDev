@@ -1,4 +1,3 @@
-import { Footer } from '../layout/Footer'
 import { Header } from '../layout/Header'
 import { MainPosts } from '../MainPosts'
 
@@ -8,7 +7,6 @@ export const Home = () => {
         <>
             <Header></Header>
             <MainPosts></MainPosts>
-            <Footer></Footer>
         </>
     )  
 }   

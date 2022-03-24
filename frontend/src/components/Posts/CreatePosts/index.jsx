@@ -4,7 +4,6 @@ import {Link, useHistory} from 'react-router-dom'
 
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 
-import { Footer } from '../../layout/Footer'
 import { useState } from 'react'
 import {useFlashMessage} from '../../../hooks/useFlashMessage'
 
@@ -31,6 +30,7 @@ export const CreatePosts = () => {
                 Authorization: `Bearer ${JSON.parse(token)}`,
             }
         }).then((response) => {
+            history.push('/')
             return response.data
         }).catch((error) => {
             messageType = 'error'
@@ -38,7 +38,6 @@ export const CreatePosts = () => {
         })
 
         setFlashMessage(data.message, messageType)
-        history.push('/')
     }
 
     return (
@@ -59,7 +58,6 @@ export const CreatePosts = () => {
                     </form>
                 </div>
             </div>
-            <Footer></Footer>
         </>  
     )
 }

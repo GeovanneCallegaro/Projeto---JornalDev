@@ -104,6 +104,17 @@
     background-color: #ffffff;
 }
 
+.containerUserAuthenticated .myPosts {
+    background-color: #ff9216;
+    color: #ffffff;
+    margin-top: 15px;
+}
+
+.containerUserAuthenticated .myPosts:hover {
+    color: #ff9216;
+    background-color: #ffffff;
+}
+
 .containerUserAuthenticated .logoutButton:hover {
     background-color: #ffffff;
     color: red;
@@ -114,3 +125,4 @@
     background-color: rgb(255, 13, 13);
     color: #ffffff;
 }
+

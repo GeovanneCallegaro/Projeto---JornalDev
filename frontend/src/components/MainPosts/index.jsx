@@ -60,6 +60,7 @@ export const MainPosts = () => {
                                 {user.occupation === "escritor" ? (
                                     <>
                                         <Link to="/posts/createpost"><button className={styles.createPost}>Escrever Posts</button></Link>
+                                        <Link to="/posts/myposts"><button className={styles.myPosts}>Meus Posts</button></Link>
                                     </>
                                 ) : (<></>)}
                                 <button className={styles.logoutButton} onClick={logout}>Logout</button>

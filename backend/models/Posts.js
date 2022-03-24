@@ -1,7 +1,7 @@
 const mongoose = require('../db/conn')
 const { Schema } = require('mongoose')
 
-const Posts = new mongoose.model(
+const Posts = mongoose.model(
     'Posts', 
     new Schema({
         title: {

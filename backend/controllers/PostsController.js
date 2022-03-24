@@ -79,7 +79,7 @@ module.exports = class PostsController {
 
     }
 
-    static async getAllPostUser(req, res) {
+    static async getAllPostsUser(req, res) {
         // get user by token
         const token = getToken(req)
         const user = await getUserByToken(token)

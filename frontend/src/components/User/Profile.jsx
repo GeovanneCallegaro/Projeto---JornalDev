@@ -8,8 +8,6 @@ import {Link, useHistory} from 'react-router-dom'
 
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 
-import {Footer} from '../layout/Footer/index'
-
 export const Profile = () => {
     const [user, setUser] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
@@ -70,7 +68,6 @@ export const Profile = () => {
                     </form>
                 </div>
             </div>
-            <Footer></Footer>
         </>
     )
 }
