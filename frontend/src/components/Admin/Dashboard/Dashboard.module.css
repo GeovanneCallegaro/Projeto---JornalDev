@@ -1,0 +1,150 @@
+.dashboardContainer {
+    display: flex;
+}
+
+.asideArea {
+    max-width: 600px;
+    width: 300px;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    border-right: 1px solid #00000018;
+    box-shadow: 1px 1px 1px #00000018;
+}
+
+.asideArea > h2{
+    font-size: 1.9rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    text-align: center;
+
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.containerData {
+    margin-top: 50px;
+}
+
+.containerData h2 {
+    font-size: 1.9rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+
+    margin-left: 15px;
+} 
+
+.containerData p {
+    margin-top: 20px;
+    margin-left: 15px;
+
+    font-size: 1.4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200;
+}
+
+.containerData p span {
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.buttonContainer {
+    text-align: center;
+    margin-top: 400px;
+}
+
+.buttonContainer button {
+    text-align: center;
+
+    border-radius: 50%;
+    outline: none;
+    border: none;
+
+    background-color: #ec3e3e;
+    color: #ffffff;
+
+    padding: 20px;
+    font-size: 1.7rem;
+    cursor: pointer;
+
+    transition: ease 1s;
+}
+
+.buttonContainer button:active {
+    font-size: 0.8rem;
+    padding: 10px;
+    opacity: .8;
+}
+
+.sectionRight {
+    width: 100%;
+}
+
+.headerContainer {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    
+    font-family: 'League Ghotic', sans-serif;
+    font-weight: 400;
+}
+
+.mainSection {
+    height: calc(100vh - 34px);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.mainSection > h2 {
+    font-size: 1.8rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+
+    margin-top: 80px;
+    margin-left: 40px;
+    margin-bottom: 50px;
+}
+
+.usersSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-height: 800px;
+}
+
+.userCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    min-width: 600px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 30px;
+}
+
+.userCard h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.userCard .iconContainer {
+    font-size: 1.4rem;
+    margin-right: 10px;
+}
+
+.firstIcon {
+    margin-right: 10px;
+}
+
+.iconContainer:hover {
+    opacity: .7;
+    cursor: pointer;
+}

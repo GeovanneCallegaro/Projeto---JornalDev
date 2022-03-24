@@ -10,6 +10,7 @@ import { MyPosts } from '../Posts/MyPosts';
 import { EditPosts } from '../Posts/EditPosts';
 
 import {UserProvider} from '../../context/userContext'
+import { Dashboard } from '../Admin/Dashboard/index';
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
       <UserProvider>
         <Message />
         <Switch>
+          <Route path="/admin/dashboard">
+            <Dashboard></Dashboard>
+          </Route>
           <Route path="/posts/editpost/:id">
             <EditPosts></EditPosts>
           </Route>

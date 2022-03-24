@@ -115,6 +115,17 @@
     background-color: #ffffff;
 }
 
+.containerUserAuthenticated .dashboardAdmin {
+    background-color: #16dbb1;
+    color: #ffffff;
+    margin-top: 15px;
+}
+
+.containerUserAuthenticated .dashboardAdmin:hover {
+    color: #16dbb1;
+    background-color: #ffffff;
+}
+
 .containerUserAuthenticated .logoutButton:hover {
     background-color: #ffffff;
     color: red;
