@@ -3,10 +3,17 @@ const ObjectId = require('mongoose').Types.ObjectId
 
 
 module.exports = class AdminController {
-    static async getAllUsers( res) {
+    static async getAllUsers(req, res) {
         // select users who are not admins
         const users = await User.find({'admin': false}).sort('-createdAt')
         
+        if(Object.keys(users).length === 0) {
+            res.status(200).json({
+                message: 'Não há usários!'
+            })
+            return
+        }
+
         res.status(200).json({
             users: users
         })
