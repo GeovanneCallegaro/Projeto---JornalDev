@@ -73,7 +73,7 @@ export const MyPosts = () => {
             </header>
             <section className={styles.sectionContainer}>
                 <div className={styles.postsContainer}>
-                    {posts.length > 0 ? (
+                    {posts.length > 0 ? ( 
                         posts.map((post) => (
                             <div key={post._id} className={styles.postItem}>
                                 <div className={styles.textSection}>

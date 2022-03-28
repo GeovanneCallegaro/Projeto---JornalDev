@@ -5,6 +5,7 @@ import {BiTrash, BiEditAlt} from 'react-icons/bi'
 import {Link} from 'react-router-dom'
 import { Context } from "../../../context/userContext"
 import { useFlashMessage } from "../../../hooks/useFlashMessage"
+
 import api from "../../../utils/api"
 
 import styles from './Dashboard.module.css'
@@ -12,7 +13,7 @@ import styles from './Dashboard.module.css'
 export const Dashboard = () => {
     const {authenticated} = useContext(Context)
 
-    const [posts, setPosts] = useState({})
+    const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
     const [admin, setAdmin] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
@@ -25,7 +26,8 @@ export const Dashboard = () => {
             api.get('users/checkuser', {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
-                }
+                },
+                
             }).then((response) => {
                 setAdmin(response.data)
             })
@@ -38,13 +40,24 @@ export const Dashboard = () => {
     }, [])
 
     useEffect(() => {
+        const controller = new AbortController()
+
         api.get('admin/users', {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`
-            }
+            }, 
+            signal: controller.signal
         }).then((response) => {
-            setUsers(response.data.users)
+            if(response.data.users === undefined) {
+                setUsers([])
+            } else {
+                setUsers(response.data.users)
+            }
         })
+
+        return () => {
+            controller.abort()
+        }
     }, [token])
 
     const deleteUser = (id) => {
@@ -67,23 +80,25 @@ export const Dashboard = () => {
         setFlashMessage(messageText, messageType)
     }
 
+    console.log(posts)
+
     return (
         <div className={styles.dashboardContainer}>
 
             <aside className={styles.asideArea}>
                 <h2>Bem vindo, {admin.name}!</h2>
-                {Object.keys(posts).length === 0 ? (
+                {posts.length > 0 ? (
                     <>
-                        <div className={styles.loadingContainer}>
-                            <div className={styles.loading}></div>
+                        <div className={styles.containerData}>
+                            <h2>Dados do site: </h2>
+                            <p>Total de posts: <span>{posts.length}</span></p>
+                            <p>Total de usuários: <span>{users.length}</span></p>
                         </div>
                     </>
                 ) : (
                     <>
-                        <div className={styles.containerData}>
-                            <h2>Dados do site: </h2>
-                            <p>Total de posts: <span>{Object.keys(posts).length}</span></p>
-                            <p>Total de usuários: <span>{users.length}</span></p>
+                        <div className={styles.loadingContainer}>
+                            <div className={styles.loading}></div>
                         </div>
                     </>
                 )}
@@ -104,19 +119,20 @@ export const Dashboard = () => {
                                     <div className={styles.userCard} key={user._id}>
                                         <h2>Nome do usuário: {user.name}</h2>
                                         <div className={styles.iconContainer}>
-                                            <BiEditAlt className={styles.firstIcon}></BiEditAlt>
+                                            <Link to={`/admin/user/edit/${user._id}`}><BiEditAlt className={styles.firstIcon}></BiEditAlt></Link>
                                             <BiTrash onClick={() => {deleteUser(user._id)}}></BiTrash>
                                         </div>
                                     </div>
                                 ))}
                             </>
-                        ): (
+                        ): ''}
+                        {users.length === 0 ?(
                             <>
                                 <div>
-                                    <p className={styles.loadingText}>Carregando Usuários...</p>
+                                    <p className={styles.loadingText}>Não há usuários!</p>
                                 </div>
                             </>
-                        )}
+                        ): ''}
                     </div>
                 </main>
             </div>

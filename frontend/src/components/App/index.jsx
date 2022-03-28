@@ -8,9 +8,10 @@ import { Profile } from '../User/Profile.jsx'
 import { CreatePosts } from '../Posts/CreatePosts';
 import { MyPosts } from '../Posts/MyPosts';
 import { EditPosts } from '../Posts/EditPosts';
+import { Dashboard } from '../Admin/Dashboard/index';
+import { EditUser } from '../Admin/EditUser';
 
 import {UserProvider} from '../../context/userContext'
-import { Dashboard } from '../Admin/Dashboard/index';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <UserProvider>
         <Message />
         <Switch>
+          <Route path="/admin/user/edit/:id">
+            <EditUser></EditUser>
+          </Route>
           <Route path="/admin/dashboard">
             <Dashboard></Dashboard>
           </Route>
