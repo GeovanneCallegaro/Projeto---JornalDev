@@ -4,6 +4,7 @@ import {BiTrash, BiEditAlt} from 'react-icons/bi'
 
 import {Link} from 'react-router-dom'
 import { Context } from "../../../context/userContext"
+import { useFlashMessage } from "../../../hooks/useFlashMessage"
 import api from "../../../utils/api"
 
 import styles from './Dashboard.module.css'
@@ -15,6 +16,8 @@ export const Dashboard = () => {
     const [users, setUsers] = useState([])
     const [admin, setAdmin] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
+
+    const {setFlashMessage} = useFlashMessage()
 
     useEffect(() => {
 
@@ -43,6 +46,26 @@ export const Dashboard = () => {
             setUsers(response.data.users)
         })
     }, [token])
+
+    const deleteUser = (id) => {
+        let messageType = 'sucess'
+        let messageText = 'Usuário excluído com sucesso!'
+
+        api.delete(`admin/user/${id}`, {
+            headers: {
+                Authorization: `Bearer ${JSON.parse(token)}`
+            }
+        }).then((response) => {
+            const updatedUser = users.filter((user) => user._id !== id)
+            setUsers(updatedUser)
+            return response.data
+        }).catch((err) => {
+            messageType = 'error'
+            messageText = err.response.data
+        })
+
+        setFlashMessage(messageText, messageType)
+    }
 
     return (
         <div className={styles.dashboardContainer}>
@@ -82,7 +105,7 @@ export const Dashboard = () => {
                                         <h2>Nome do usuário: {user.name}</h2>
                                         <div className={styles.iconContainer}>
                                             <BiEditAlt className={styles.firstIcon}></BiEditAlt>
-                                            <BiTrash></BiTrash>
+                                            <BiTrash onClick={() => {deleteUser(user._id)}}></BiTrash>
                                         </div>
                                     </div>
                                 ))}
