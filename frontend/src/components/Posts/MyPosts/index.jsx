@@ -44,7 +44,7 @@ export const MyPosts = () => {
             }).then((response) => {
                 setPosts(response.data.posts)
             }).catch((error) => {
-                console.log(error)
+                return error.response.data
             })
         }
     }, [user, token])

@@ -19,7 +19,6 @@ export const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(user)
         register(user)
     }
 

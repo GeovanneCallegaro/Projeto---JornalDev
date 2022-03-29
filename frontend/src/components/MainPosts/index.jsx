@@ -9,7 +9,6 @@ import { Context } from '../../context/userContext'
 
 export const MainPosts = () => {
     const {authenticated, logout} = useContext(Context)
-    console.log(authenticated)
 
     const [posts, setPosts] = useState([])
 

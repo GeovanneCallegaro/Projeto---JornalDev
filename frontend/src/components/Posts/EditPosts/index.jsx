@@ -3,12 +3,12 @@ import styles from './EditPosts.module.css'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
 
 import {useFlashMessage} from '../../../hooks/useFlashMessage'
 
 import api from '../../../utils/api'
-import { Context } from '../../../context/userContext'
+
 
 export const EditPosts = () => {
     const [token] = useState(localStorage.getItem('token') || '')
@@ -16,14 +16,12 @@ export const EditPosts = () => {
     const {setFlashMessage} = useFlashMessage()
     const {id} = useParams()
     const history = useHistory()
-    const {authenticated} = useContext(Context)
 
     const handlePost = (e) => {
         setPost({...post, [e.target.name]: e.target.value})
     }
 
     useEffect(() => {
-        console.log(token)
 
         if(token !== '') {
             api.get(`posts/${id}`, {
@@ -42,7 +40,6 @@ export const EditPosts = () => {
         e.preventDefault()
 
         let messageType = 'sucess'
-        console.log(post)
 
         const data = await api.patch(`posts/editnotice/${post._id}`, post, {
             headers: {
@@ -58,8 +55,6 @@ export const EditPosts = () => {
 
         setFlashMessage(data.message, messageType)
     }
-
-    console.log(authenticated)
 
     return (
         <>

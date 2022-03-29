@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { Context } from '../../../context/userContext'
 import { useFlashMessage } from '../../../hooks/useFlashMessage'
 import api from '../../../utils/api'
 
@@ -53,7 +52,6 @@ export const EditUser = () => {
     }
 
     const handleAdmin = (e) => {
-        console.log(e.target.value)
         setUser({...user, admin: e.target.value})
     }
     
