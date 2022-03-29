@@ -1,5 +1,5 @@
 import {useFlashMessage} from '../../hooks/useFlashMessage'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import api from '../../utils/api'
 
 import styles from './Profile.module.css'
@@ -7,12 +7,14 @@ import styles from './Profile.module.css'
 import {Link, useHistory} from 'react-router-dom'
 
 import {AiOutlineArrowLeft} from 'react-icons/ai'
+import { Context } from '../../context/userContext'
 
 export const Profile = () => {
     const [user, setUser] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
     const {setFlashMessage} = useFlashMessage()
     const history = useHistory()
+    const {authenticated} = useContext(Context)
 
     useEffect(() => {
         api.get('users/checkuser', {
@@ -51,6 +53,9 @@ export const Profile = () => {
     
     return (
         <>
+            {authenticated === false ? (
+                history.push('/notfound')
+            ) : (<></>)}
             <header className={styles.headerContainer}>
                 <Link to="/"><AiOutlineArrowLeft className={styles.iconHeader}/></Link>
                 <h1>LOGO</h1>

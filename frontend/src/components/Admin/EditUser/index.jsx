@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { Link, useHistory, useParams } from 'react-router-dom'
+import { Context } from '../../../context/userContext'
 import { useFlashMessage } from '../../../hooks/useFlashMessage'
 import api from '../../../utils/api'
 
@@ -12,6 +13,8 @@ export const EditUser = () => {
     const [user, setUser] = useState({})
     const {id} = useParams()
     const [token] = useState(localStorage.getItem('token') || '')
+
+    const {authenticated} = useContext(Context)
 
     const {setFlashMessage} = useFlashMessage()
     const history = useHistory()

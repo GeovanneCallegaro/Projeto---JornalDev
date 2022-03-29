@@ -3,11 +3,12 @@ import styles from './EditPosts.module.css'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 import { Link, useHistory, useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
 import {useFlashMessage} from '../../../hooks/useFlashMessage'
 
 import api from '../../../utils/api'
+import { Context } from '../../../context/userContext'
 
 export const EditPosts = () => {
     const [token] = useState(localStorage.getItem('token') || '')
@@ -15,20 +16,27 @@ export const EditPosts = () => {
     const {setFlashMessage} = useFlashMessage()
     const {id} = useParams()
     const history = useHistory()
+    const {authenticated} = useContext(Context)
 
     const handlePost = (e) => {
         setPost({...post, [e.target.name]: e.target.value})
     }
 
     useEffect(() => {
-        api.get(`posts/${id}`, {
-            headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`
-            }
-        }).then((response) => {
-            setPost(response.data.post)
-        })
-    }, [token, id])
+        console.log(token)
+
+        if(token !== '') {
+            api.get(`posts/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }
+            }).then((response) => {
+                setPost(response.data.post)
+            })
+        } else {
+            history.push('/notfound')
+        }
+    }, [token, id, history])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -51,6 +59,8 @@ export const EditPosts = () => {
         setFlashMessage(data.message, messageType)
     }
 
+    console.log(authenticated)
+
     return (
         <>
         <header className={styles.headerContainer}>
@@ -60,12 +70,12 @@ export const EditPosts = () => {
         <div className={styles.formContainer}>
             <div className={styles.formArea}>
                 <h2>Edite sua Notícia</h2>
-                <form onSubmit={handleSubmit}>
-                    <input type="text" placeholder='Título' name='title' onChange={handlePost} value={post.title}/>
-                    <input type="text" placeholder='Subtítulo' name='subtitle' onChange={handlePost} value={post.subtitle}/>
-                    <input type="text" placeholder='Tema' name='theme' onChange={handlePost} value={post.theme}/>
-                    <input type="submit" value="Editar!" className={styles.buttonSubmit} />
-                </form>
+                    <form onSubmit={handleSubmit}>
+                        <input type="text" placeholder='Título' name='title' onChange={handlePost} value={post.title}/>
+                        <input type="text" placeholder='Subtítulo' name='subtitle' onChange={handlePost} value={post.subtitle}/>
+                        <input type="text" placeholder='Tema' name='theme' onChange={handlePost} value={post.theme}/>
+                        <input type="submit" value="Editar!" className={styles.buttonSubmit} />
+                    </form>
             </div>
         </div>
         </>

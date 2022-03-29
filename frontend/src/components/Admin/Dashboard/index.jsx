@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import {BiTrash, BiEditAlt} from 'react-icons/bi'
 
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { Context } from "../../../context/userContext"
 import { useFlashMessage } from "../../../hooks/useFlashMessage"
 
@@ -12,6 +12,8 @@ import styles from './Dashboard.module.css'
 
 export const Dashboard = () => {
     const {authenticated} = useContext(Context)
+
+    const history = useHistory()
 
     const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
@@ -82,7 +84,9 @@ export const Dashboard = () => {
 
     return (
         <div className={styles.dashboardContainer}>
-
+            {authenticated === false ? (
+                history.push('/notfound')
+            ) : (<></>)}
             <aside className={styles.asideArea}>
                 <h2>Bem vindo, {admin.name}!</h2>
                 {posts.length > 0 ? (

@@ -20,6 +20,9 @@ function App() {
       <UserProvider>
         <Message />
         <Switch>
+          <Route path="/notfound">
+            <NotFound></NotFound>
+          </Route>
           <Route path="/admin/user/edit/:id">
             <EditUser></EditUser>
           </Route>
@@ -43,9 +46,6 @@ function App() {
           </Route>
           <Route path="/users/login">
             <Login></Login>
-          </Route>
-          <Route path="/notfound">
-            <NotFound></NotFound>
           </Route>
           <Route path="/">
             <Home></Home>

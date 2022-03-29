@@ -3,41 +3,40 @@ import styles from './MyPosts.module.css'
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 import {BiTrash, BiEditAlt} from 'react-icons/bi'
 
-import { Link, useHistory } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { Link, useHistory} from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
 import api from '../../../utils/api'
 
-import { Context } from '../../../context/userContext'
-
 import {useFlashMessage} from '../../../hooks/useFlashMessage'
+
 
 export const MyPosts = () => {
     const [posts, setPosts] = useState([])
     const [token] = useState(localStorage.getItem('token') || '')
-    const [user, setUser] = useState([])
-    const {authenticated} = useContext(Context)
+    const [user, setUser] = useState({})
     const {setFlashMessage} = useFlashMessage()
     const history = useHistory()
     
 
     useEffect(() => {
-        const fetchUser = async () => {
-            if(authenticated === true) {
-                await api.get('/users/checkuser', {
-                    headers: {
-                        Authorization: `Bearer ${JSON.parse(token)}`
-                    }
-                }).then((response) => {
-                    setUser(response.data)
-                })
-            }
+        if(token !== '') {
+            api.get('/users/checkuser', {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }
+            }).then((response) => {
+                setUser(response.data)
+            })
+        } else {
+            history.push('/notfound')
         }
-        fetchUser()
-    }, [token, authenticated])
+        
+    }, [token, history])
 
     useEffect(() => {
-        if(user.length > 0 && authenticated === true) {
+
+        if(Object.keys(user).length > 0) {
             api.get('/posts/myposts', user, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
@@ -48,7 +47,7 @@ export const MyPosts = () => {
                 console.log(error)
             })
         }
-    }, [user, token, authenticated])
+    }, [user, token])
 
     const deletePost = (id) => {
         let messageType = 'sucess'
@@ -71,7 +70,6 @@ export const MyPosts = () => {
         setFlashMessage(messageText, messageType)
     }
 
-
     return (
         <>
             <header className={styles.headerContainer}>
@@ -80,7 +78,7 @@ export const MyPosts = () => {
             </header>
             <section className={styles.sectionContainer}>
                 <div className={styles.postsContainer}>
-                    {posts.length > 0 && authenticated === true ? ( 
+                    {posts.length > 0 ? ( 
                         posts.map((post) => (
                             <div key={post._id} className={styles.postItem}>
                                 <div className={styles.textSection}>
@@ -94,14 +92,7 @@ export const MyPosts = () => {
                             </div>
                     ))
                     ) : (
-                        <>
-                            {authenticated === false ? (
-                                history.push('/notfound')
-                            ) : (
-                                <p className={styles.noPosts}>Não há posts cadastrados!</p>
-                            )}
-                        </>
-                        
+                        <p className={styles.noPosts}> Não há posts cadastrados!</p>
                     )}
                 </div>
             </section>
