@@ -12,6 +12,7 @@ import { Dashboard } from '../Admin/Dashboard/index';
 import { EditUser } from '../Admin/EditUser';
 
 import {UserProvider} from '../../context/userContext'
+import { NotFound } from '../layout/notFound';
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
           </Route>
           <Route path="/users/login">
             <Login></Login>
+          </Route>
+          <Route path="/notfound">
+            <NotFound></NotFound>
           </Route>
           <Route path="/">
             <Home></Home>

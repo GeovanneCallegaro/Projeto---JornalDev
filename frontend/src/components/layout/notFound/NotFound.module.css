@@ -1,0 +1,33 @@
+.notFound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+
+    height: 100vh;
+}
+
+.notFound h1 {
+    font-size: 6rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.notFound p {
+    font-size: 2rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+
+}
+
+.notFound .backP {
+    font-size: 1.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    text-decoration: underline;
+    margin-top: 20px;
+    
+    color: rgba(15, 12, 207, 0.76);
+}

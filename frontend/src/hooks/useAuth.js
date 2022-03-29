@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import {useFlashMessage} from './useFlashMessage'
 
 export const useAuth = () => {
-    const [authenticated, setAuthenticated] = useState()
+    const [authenticated, setAuthenticated] = useState(false)
     const history = useHistory()
     const {setFlashMessage} = useFlashMessage()
     
