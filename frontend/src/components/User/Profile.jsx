@@ -1,5 +1,5 @@
 import {useFlashMessage} from '../../hooks/useFlashMessage'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 import api from '../../utils/api'
 
 import styles from './Profile.module.css'
@@ -7,25 +7,27 @@ import styles from './Profile.module.css'
 import {Link, useHistory} from 'react-router-dom'
 
 import {AiOutlineArrowLeft} from 'react-icons/ai'
-import { Context } from '../../context/userContext'
 
 export const Profile = () => {
     const [user, setUser] = useState({})
     const [token] = useState(localStorage.getItem('token') || '')
     const {setFlashMessage} = useFlashMessage()
     const history = useHistory()
-    const {authenticated} = useContext(Context)
 
     useEffect(() => {
-        api.get('users/checkuser', {
-            headers: {
-                Authorization: `Bearer: ${JSON.parse(token)}`
-            },
-        }).then((response) => {
-            setUser(response.data)
-        })
+        if(token !== '') {
+            api.get('users/checkuser', {
+                headers: {
+                    Authorization: `Bearer: ${JSON.parse(token)}`
+                },
+            }).then((response) => {
+                setUser(response.data)
+            })
+        } else {
+            history.push('/notfound')
+        }
         
-    }, [token])
+    }, [token, history])
 
     const handleChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value})
@@ -53,9 +55,6 @@ export const Profile = () => {
     
     return (
         <>
-            {authenticated === false ? (
-                history.push('/notfound')
-            ) : (<></>)}
             <header className={styles.headerContainer}>
                 <Link to="/"><AiOutlineArrowLeft className={styles.iconHeader}/></Link>
                 <h1>LOGO</h1>
