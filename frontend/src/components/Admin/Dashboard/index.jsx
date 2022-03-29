@@ -21,7 +21,6 @@ export const Dashboard = () => {
 
     const {setFlashMessage} = useFlashMessage()
 
-    console.log(token)
 
     useEffect(() => {
         if(token !== '') {
@@ -45,7 +44,7 @@ export const Dashboard = () => {
     useEffect(() => {
         const controller = new AbortController()
 
-        if(token !== '') {
+        if(token !== '' && admin.admin !== 'Não') {
             api.get('admin/users', {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
@@ -57,13 +56,15 @@ export const Dashboard = () => {
                 } else {
                     setUsers(response.data.users)
                 }
-            })
+            }) 
+        } else {
+            history.push('/notfound')
         }
         
         return () => {
             controller.abort()
         }
-    }, [token])
+    }, [token, admin, history])
 
     const deleteUser = (id) => {
         let messageType = 'sucess'

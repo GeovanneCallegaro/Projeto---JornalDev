@@ -11,6 +11,7 @@ export const EditUser = () => {
     const [options] = useState(['Sim', 'Não'])
 
     const [user, setUser] = useState({})
+    const [admin, setAdmin] = useState({})
     const {id} = useParams()
     const [token] = useState(localStorage.getItem('token') || '')
 
@@ -20,6 +21,21 @@ export const EditUser = () => {
 
     useEffect(() => {
         if(token !== '') {
+            api.get('users/checkuser', {
+                headers: {
+                    Authorization: `Bearer: ${JSON.parse(token)}`
+                },
+            }).then((response) => {
+                setAdmin(response.data)
+            })
+        } else {
+            history.push('/notfound')
+        }
+        
+    }, [token, history])
+
+    useEffect(() => {
+        if(token !== '' && admin.admin !== 'Não') {
             api.get(`admin/user/${id}`, {
                 headers: {
                     Authorization: `Bearer ${JSON.parse(token)}`
@@ -30,7 +46,7 @@ export const EditUser = () => {
         } else {
             history.push('/notfound')
         }
-    }, [token, id, history])
+    }, [token, id, history, admin])
 
     const handleOccupation = (e) => {
         setUser({...user, [e.target.name]: e.target.value})
