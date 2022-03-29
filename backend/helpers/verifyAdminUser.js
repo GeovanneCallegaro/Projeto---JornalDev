@@ -13,7 +13,7 @@ const checkIfAdminIsTrue = async (req, res, next) => {
     }
 
     // check if user logged is admin
-    if(getUser.admin !== true) {
+    if(getUser.admin !== 'Sim') {
         return res.status(200) .json({message: 'Não é admin!'})
     } 
 

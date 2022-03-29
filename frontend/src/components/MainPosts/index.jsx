@@ -63,7 +63,7 @@ export const MainPosts = () => {
                                         <Link to="/posts/myposts"><button className={styles.myPosts}>Meus Posts</button></Link>
                                     </>
                                 ) : (<></>)}
-                                {user.admin === true ? (
+                                {user.admin === "Sim" ? (
                                     <>
                                         <Link to="/admin/dashboard"><button className={styles.dashboardAdmin}>Dashboard</button></Link>
                                     </>

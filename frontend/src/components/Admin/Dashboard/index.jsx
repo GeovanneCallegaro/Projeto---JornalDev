@@ -80,8 +80,6 @@ export const Dashboard = () => {
         setFlashMessage(messageText, messageType)
     }
 
-    console.log(posts)
-
     return (
         <div className={styles.dashboardContainer}>
 

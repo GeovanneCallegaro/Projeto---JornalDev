@@ -21,7 +21,7 @@ const User = mongoose.model(
             required: true
         },
         admin: {
-            type: Boolean, 
+            type: String, 
             required: true
         },
         occupation: {

@@ -7,14 +7,14 @@ import api from '../../../utils/api'
 import styles from './EditUser.module.css'
 
 export const EditUser = () => {
-    const [options, setOptions] = useState(['Sim', 'Não'])
+    const [options] = useState(['Sim', 'Não'])
 
     const [user, setUser] = useState({})
     const {id} = useParams()
     const [token] = useState(localStorage.getItem('token') || '')
 
     const {setFlashMessage} = useFlashMessage()
-    const {history} = useHistory()
+    const history = useHistory()
 
     useEffect(() => {
         api.get(`admin/user/${id}`, {
@@ -31,42 +31,35 @@ export const EditUser = () => {
     }
 
     const handleAdmin = (e) => {
-        console.log(e.target.name)
+        console.log(e.target.value)
         setUser({...user, admin: e.target.value})
     }
     
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         let messageType = 'sucess'
-        console.log(user)
+        let messageText = 'Usuário editado com sucesso!'
 
-        if(user.admin === 'Sim') {
-            user.admin = true
-        } else {
-            user.admin = false
-        }
-
-        console.log(user)
-
-        const data = await api.patch(`admin/user/edit/${id}`, user, {
+        api.patch(`admin/user/edit/${id}`, user, {
             headers: {
                 Authorization: `Bearer ${JSON.parse(token)}`
             }
         }).then((response) => {
-            history.push('admin/dashboard')
+            history.push('/admin/dashboard')
             return response.data
         }).catch((err) => {
             messageType = 'error'
+            messageText = 'Algo deu errado!'
             return err.response.data
         })
 
-        setFlashMessage(data.message, messageType)
+        setFlashMessage(messageText, messageType)
     }
 
     return (
         <>
             <header className={styles.headerContainer}>
-                    <Link to="/posts/myposts"><AiOutlineArrowLeft className={styles.iconHeader}/></Link>
+                    <Link to="/admin/dashboard"><AiOutlineArrowLeft className={styles.iconHeader}/></Link>
                     <h1>LOGO</h1>
             </header>
         <div className={styles.formContainer}>
