@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import {BiTrash, BiEditAlt} from 'react-icons/bi'
 
 import {Link, useHistory} from 'react-router-dom'
-import { Context } from "../../../context/userContext"
 import { useFlashMessage } from "../../../hooks/useFlashMessage"
 
 import api from "../../../utils/api"
@@ -11,31 +10,33 @@ import api from "../../../utils/api"
 import styles from './Dashboard.module.css'
 
 export const Dashboard = () => {
-    const {authenticated} = useContext(Context)
 
     const history = useHistory()
 
     const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
     const [admin, setAdmin] = useState({})
+
     const [token] = useState(localStorage.getItem('token') || '')
 
     const {setFlashMessage} = useFlashMessage()
 
-    useEffect(() => {
+    console.log(token)
 
-        if(authenticated === true) {
+    useEffect(() => {
+        if(token !== '') {
             api.get('users/checkuser', {
                 headers: {
-                    Authorization: `Bearer ${JSON.parse(token)}`
+                    Authorization: `Bearer: ${JSON.parse(token)}`
                 },
-                
             }).then((response) => {
                 setAdmin(response.data)
             })
+        } else {
+            history.push('/notfound')
         }
-
-    }, [token, authenticated])
+        
+    }, [token, history])
     
     useEffect(() => {
         api.get('/posts').then((response) => setPosts(response.data.posts))
@@ -44,19 +45,21 @@ export const Dashboard = () => {
     useEffect(() => {
         const controller = new AbortController()
 
-        api.get('admin/users', {
-            headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`
-            }, 
-            signal: controller.signal
-        }).then((response) => {
-            if(response.data.users === undefined) {
-                setUsers([])
-            } else {
-                setUsers(response.data.users)
-            }
-        })
-
+        if(token !== '') {
+            api.get('admin/users', {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }, 
+                signal: controller.signal
+            }).then((response) => {
+                if(response.data.users === undefined) {
+                    setUsers([])
+                } else {
+                    setUsers(response.data.users)
+                }
+            })
+        }
+        
         return () => {
             controller.abort()
         }
@@ -84,9 +87,6 @@ export const Dashboard = () => {
 
     return (
         <div className={styles.dashboardContainer}>
-            {authenticated === false ? (
-                history.push('/notfound')
-            ) : (<></>)}
             <aside className={styles.asideArea}>
                 <h2>Bem vindo, {admin.name}!</h2>
                 {posts.length > 0 ? (

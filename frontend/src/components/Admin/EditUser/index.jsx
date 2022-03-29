@@ -14,20 +14,23 @@ export const EditUser = () => {
     const {id} = useParams()
     const [token] = useState(localStorage.getItem('token') || '')
 
-    const {authenticated} = useContext(Context)
 
     const {setFlashMessage} = useFlashMessage()
     const history = useHistory()
 
     useEffect(() => {
-        api.get(`admin/user/${id}`, {
-            headers: {
-                Authorization: `Bearer ${JSON.parse(token)}`
-            }
-        }).then((response) => {
-            setUser(response.data.user)
-        })
-    }, [token, id])
+        if(token !== '') {
+            api.get(`admin/user/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }
+            }).then((response) => {
+                setUser(response.data.user)
+            })
+        } else {
+            history.push('/notfound')
+        }
+    }, [token, id, history])
 
     const handleOccupation = (e) => {
         setUser({...user, [e.target.name]: e.target.value})
