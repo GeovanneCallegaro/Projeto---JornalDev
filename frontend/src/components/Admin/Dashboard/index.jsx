@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AiOutlineArrowLeft } from "react-icons/ai"
+import { AiOutlineArrowLeft} from "react-icons/ai"
 import {BiTrash, BiEditAlt} from 'react-icons/bi'
 
 import {Link, useHistory} from 'react-router-dom'

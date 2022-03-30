@@ -3,9 +3,9 @@
 }
 
 .asideArea {
-    max-width: 600px;
+    max-width: 800px;
     width: 300px;
-    min-height: 100vh;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -25,7 +25,7 @@
 }
 
 .containerData {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 .containerData h2 {
@@ -52,7 +52,7 @@
 
 .buttonContainer {
     text-align: center;
-    margin-top: 400px;
+    margin-top: calc(100vh - 65vh);
 }
 
 .buttonContainer button {
@@ -123,7 +123,7 @@
     justify-content: space-between;
     align-items: center;
 
-    min-width: 600px;
+    width: 600px;
     border-bottom: 1px solid #cccccc;
     margin-bottom: 30px;
 }
@@ -234,4 +234,84 @@
     font-size: 1.6rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+}
+
+.menuMobileSide {
+    display: none;
+}
+
+.closeMenu {
+    display: none;
+}
+
+/*Responsive*/
+@media (max-width: 825px) {
+    .userCard {
+        min-width: 0;
+        width: 500px;
+    }
+}
+
+@media (max-width: 720px) {
+    .userCard {
+        min-width: 0;
+        width: 450px;
+    }
+}
+
+@media (max-width: 660px) {
+    .userCard {
+        min-width: 0;
+        width: 400px;
+    }
+}
+
+@media (max-width: 610px) {
+    .dashboardContainer {
+        flex-direction: column;
+    }
+
+    .asideArea {
+        order: 1;
+        justify-content: center;
+        align-items: center;
+        min-height: 10vh;
+        height: 350px;
+
+        width: 100%;
+
+        border-top: 1px solid #00000018;
+        border-right: 0;
+        box-shadow: 1px 1px 1px #00000018;
+    }
+
+    .buttonContainer {
+        margin-top: 40px;
+    }
+
+    .mainSection {
+        order: 2;
+        min-height: 20vh;
+        height: 400px;
+    }
+
+    .userCard {
+        width: 420px;
+    }
+
+    .headerContainer {
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .userCard {
+        width: 350px;
+    }
+}
+
+@media (max-width: 360px) {
+    .userCard {
+        width: 300px;
+    }
 }
