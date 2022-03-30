@@ -108,11 +108,10 @@
 
 /* Responsive */
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
     .headerContainer {
-        justify-content: center;
-        flex-direction: column;
         padding: 0;
+        justify-content: space-around;
     }
 
     .titleContainer h1 {
@@ -134,7 +133,6 @@
 
     .iconMenuMobile {
         font-size: 1.4rem;
-        margin-top: 10px;
         display: block;
     }
 
@@ -171,6 +169,17 @@
 
     .menuMobileDiv ul .closeMenuMobile {
         font-size: 1.4rem;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .headerContainer {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .iconMenuMobile {
         margin-top: 10px;
     }
 }
