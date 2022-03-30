@@ -42,8 +42,7 @@
     align-items: center;
     justify-content: center;
     
-
-    min-width: 600px;
+    width: 600px;
     min-height: 70vh;
 
     background-color: #ffffff;
@@ -108,4 +107,33 @@
 
 .formArea form .buttonSubmit:focus {
     border: none;
+}
+
+/* Responsive*/
+@media (max-width: 610px) {
+    .formArea {
+        width: 500px;
+    }
+}
+
+@media (max-width: 500px) {
+    .formArea {
+        width: 450px;
+    }
+}
+
+@media (max-width: 425px) {
+    .formArea {
+        width: 350px;
+    }
+}
+
+@media (max-width: 350px) {
+    .formArea {
+        width: 300px;
+    }
+
+    .formArea form input {
+        width: 250px;
+    }
 }

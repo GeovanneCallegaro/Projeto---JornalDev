@@ -63,10 +63,10 @@ export const Profile = () => {
                 <div className={styles.formArea}>
                     <h2>EDITE SEUS DADOS</h2>
                     <form onSubmit={handleSubmit}>
-                        <input type="text" placeholder='Nome' name="name" onChange={handleChange} />
-                        <input type="number" placeholder='Idade' name='age'  onChange={handleChange} />
-                        <input type="email" placeholder='Email' name='email' onChange={handleChange} />
-                        <input type="password" placeholder='Senha' name='password'  onChange={handleChange}/>
+                        <input type="text" placeholder='Nome' name="name" onChange={handleChange} value={user.name}/>
+                        <input type="number" placeholder='Idade' name='age'  onChange={handleChange} value={user.age}/>
+                        <input type="email" placeholder='Email' name='email' onChange={handleChange} value={user.email}/>
+                        <input type="password" placeholder='Senha' name='password'  onChange={handleChange} value=''/>
                         <input type="password" placeholder='Confirmação de senha' name='confirmPassword'  onChange={handleChange}/>
                         <input type="submit" value="Editar" className={styles.buttonSubmit}/>
                     </form>
