@@ -73,12 +73,9 @@ export const Register = () => {
     return (
         <section>
             <div className={styles.backgroundImage}></div>
+            <div className={styles.formSection}>
                 <div className={styles.containerArrow}>
                     <Link to="/"><FaArrowLeft className={styles.arrowLeftIcon} /></Link>
-                </div>
-            <div className={styles.formSection}>
-                <div className={styles.nullInput}>
-                    <p>Todos os dados devem ser preenchidos!</p>
                 </div>
                 <div className={styles.formElement}>
                         <AiOutlineMail className={styles.emailIcon} />

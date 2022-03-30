@@ -14,8 +14,8 @@ section {
 }
 
 .containerArrow {
-    background-color: rgba(204, 204, 204, 0.1);
     display: flex;
+    margin-bottom: 10px;
 }
 
 .arrowLeftIcon {
@@ -162,21 +162,65 @@ section {
     border: #000000;
 }
 
-.nullInput {
-    text-align: center;
-    background-color: rgb(243, 122, 122);
-    width: 300px;
-    height: 25px;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    border-radius: 2px;
-    display: none;
+/* Responsive */
+@media (max-width: 1350px) {
+    .formSection {
+        width: 50%;
+    }
 }
 
-.nullInput p {
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
-    margin-top: 4px;
-    transition: 1s;
+@media (max-width: 1000px) {
+    .formSection {
+        width: 60%;
+    }
+}
+
+@media (max-width: 900px) {
+    .backgroundImage {
+        display: none;
+    }
+
+    .formSection {
+        width: 100%;
+    }
+}
+
+@media (max-width: 410px) {
+    .formElement {
+        width: 340px;
+        height: 400px;
+    }
+
+    .formElement input {
+        width: 70%;
+    }
+
+    .formElement .inputSubmit {
+        width: 80%;
+        font-size: 1.7rem;
+        margin-top: 5px;
+    }
+
+    .emailIcon, .ageIcon, .userIcon {
+        margin-left: 275px;
+    }
+
+    .iconEye, .iconEyeSlash, .iconEyeSlashConfirm2, .iconEyeConfirm {
+        margin-left: 264px;
+    }
+}
+
+@media (max-width: 340px) {
+    .formElement {
+        width: 300px;
+        height: 380px;
+    }
+
+    .emailIcon, .ageIcon, .userIcon {
+        margin-left: 235px;
+    }
+
+    .iconEye, .iconEyeSlash, .iconEyeSlashConfirm2, .iconEyeConfirm {
+        margin-left: 224px;
+    }
 }

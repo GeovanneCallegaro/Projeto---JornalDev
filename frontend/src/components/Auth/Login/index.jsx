@@ -46,13 +46,10 @@ export const Login = () => {
 
     return (
         <section className={styles.container}>
-            <div className={styles.arrowLeft}>
-                <Link to="/"><FaArrowLeft className={styles.icon}></FaArrowLeft></Link>
-            </div>
             <div className={styles.loginSection}>
-                    <div className={styles.nullInput}>
-                        <p>Insira todos os dados!</p>
-                    </div>
+                <div className={styles.arrowLeft}>
+                    <Link to="/"><FaArrowLeft className={styles.icon}></FaArrowLeft></Link>
+                </div>
                 <div className={styles.formLoginSection}>
                     <form onSubmit={handleSubmit}>
                         <input type="email" name="email"  placeholder='Digite seu email' className={styles.firstInput} autoFocus onChange={handleChange}/>
