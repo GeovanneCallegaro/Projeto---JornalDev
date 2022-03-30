@@ -63,7 +63,6 @@ export const useAuth = () => {
         localStorage.removeItem('token')
         api.defaults.Authorization = undefined
         history.push('/')
-        window.location.reload()
     }
 
     return {login, register, logout, authenticated}

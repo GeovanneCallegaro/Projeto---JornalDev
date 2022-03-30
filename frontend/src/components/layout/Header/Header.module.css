@@ -2,13 +2,44 @@
     max-height: 200px;
     min-height: 100px;
     max-width: 800px;
+
     margin: 0 auto;
     margin-top: 20px;
+
     padding: 20px;
+
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin-bottom: 60px;
+}
+
+.menuContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuContainer ul {
+    display: flex;
+    list-style: none;
+}
+
+.menuContainer ul li {
+    padding: 6px;
+    font-size: 1.7rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.menuContainer ul li a {
+    font-size: 1.7rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.logout {
+    cursor: pointer;
 }
 
 .socialMediaContainer {
@@ -16,6 +47,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+    margin-right: 60px;
 }
 
 .socialMediaIcon {
@@ -64,4 +96,81 @@
 .iconMenuAuthenticated {
     font-size: 1.6rem;
     cursor: pointer;
+}
+
+.iconMenuMobile {
+    display: none;
+}
+
+.menuMobileSection {
+    display: none;
+}
+
+/* Responsive */
+
+@media (max-width: 425px) {
+    .headerContainer {
+        justify-content: center;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .titleContainer h1 {
+        margin-right: 0;
+    }
+
+    .menuContainer {
+        display: none;
+    }
+
+    .socialMediaContainer {
+        padding: 10px;
+        margin-right: 0;
+    }
+
+    .socialMediaIcon {
+        padding: 10px;
+    }
+
+    .iconMenuMobile {
+        font-size: 1.4rem;
+        margin-top: 10px;
+        display: block;
+    }
+
+    .menuMobileSection {
+        justify-content: center;
+    }
+
+    .menuMobileDiv {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menuMobileDiv ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .menuMobileDiv ul li {
+        padding: 6px;
+        font-size: 1.5rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+
+    .menuMobileDiv ul li a {
+        font-size: 1.5rem;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+    }
+
+    .menuMobileDiv ul .closeMenuMobile {
+        font-size: 1.4rem;
+        margin-top: 10px;
+    }
 }

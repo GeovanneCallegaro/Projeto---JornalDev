@@ -2,39 +2,34 @@ import { FaFacebookF } from 'react-icons/fa'
 import { FaTwitter } from 'react-icons/fa'
 import { FaInstagram } from 'react-icons/fa'
 import { FaGithub } from 'react-icons/fa'
-import {HiMenu} from 'react-icons/hi'
+import {AiOutlineMenu, AiOutlineClose} from 'react-icons/ai'
 
 import styles from './Header.module.css'
-import mainStyle from '../../MainPosts/MainPosts.module.css'
 
 import { Link } from 'react-router-dom'
 
-import { useContext } from 'react'
+import { useContext} from 'react'
 import { Context } from '../../../context/userContext'
 
 
 
-export const Header = () => {
-    const {authenticated} = useContext(Context)
+export const Header = ({user}) => {
+    const {authenticated, logout} = useContext(Context)
 
-    const handleMenu = () => {
-        const container = document.querySelector('.MainPosts_containerUserAuthenticated__T8Jwc')
-        const mainPosts = document.querySelector('.MainPosts_mainSectionPosts__6d8OB')
-        const mainPostItem = document.querySelector('.MainPosts_postItem__2Bb1V')
-        
+    const handleMenuMobile = () => {
+        const headerContainer = document.querySelector('#idTop')
+        const menuMobileSection = document.querySelector('.Header_menuMobileSection__UZa4e')
 
+        headerContainer.style.display = 'none'
+        menuMobileSection.style.display = 'flex'
+    }
 
-        if(container.style.display !== 'block') {
-            container.style.display = 'block'
-            mainPosts.style.marginLeft = '590px'
-            mainPosts.style.width = '600px'
-            mainPostItem.style.gridTemplateColumns = 'repeat(auto-fit, minmax(150px, 1fr))'
-        } else {
-            container.style.display = 'none'
-            mainPosts.style.width = '800px'
-            mainPosts.style.margin = '0 auto'
-            mainPostItem.style.gridTemplateColumns = 'repeat(auto-fit, minmax(200px, 1fr))'
-        }
+    const closeMenuMobile = () => {
+        const headerContainer = document.querySelector('#idTop')
+        const menuMobileSection = document.querySelector('.Header_menuMobileSection__UZa4e')
+
+        headerContainer.style.display = 'flex'
+        menuMobileSection.style.display = 'none'
     }
 
     return (
@@ -47,27 +42,90 @@ export const Header = () => {
                 <div className={styles.socialMediaIcon}><FaGithub /></div>
             </div>
             <div className={styles.titleContainer}>
-                {authenticated ? (
-                    <>
-                        <h1>LOGO</h1>
-                    </>
-                ) : (
-                    <>
-                        <h1>LOGO</h1>
-                        <Link to="/users/login"><button>Login</button></Link>
-                    </>
-                )}
+                <h1>LOGO</h1>
             </div>
             <div>
-            {authenticated ? (
-                    <>
-                        <HiMenu className={styles.iconMenuAuthenticated} onClick={handleMenu}></HiMenu> 
-                    </>
-                ) : (
-                    <></>
-                )}
+                <AiOutlineMenu className={styles.iconMenuMobile} onClick={handleMenuMobile}></AiOutlineMenu>
             </div>
+            <aside className={styles.menuContainer}>
+                <div className={styles.menuDivContainer}>
+                    <ul>
+                        {authenticated === true && user.admin === 'Sim' ? (
+                            <>
+                                <li><Link to="users/profile">Editar meus dados</Link></li>
+                                <li><Link to="admin/dashboard">Dashboard</Link></li>
+                                <li onClick={logout} className={styles.logout}>Sair</li>
+                            </>
+                        ) : (
+                            <>
+                                {authenticated === true && user.occupation === 'escritor' ? (
+                                    <>
+                                        <li><Link to="users/profile">Editar meus dados</Link></li>
+                                        <li><Link to="posts/createpost">Criar posts</Link></li>
+                                        <li><Link to="posts/myposts">Meus posts</Link></li>
+                                        <li onClick={logout} className={styles.logout}>Sair</li>
+                                    </>
+                                ) : (
+                                    <>
+                                        {authenticated === true ? (
+                                            <>
+                                                <li><Link to="users/profile">Editar meus dados</Link></li>
+                                                <li onClick={logout} className={styles.logout}>Sair</li>
+                                            </>
+                                        ): (
+                                            <>
+                                                <li><Link to="users/login">Login</Link></li>
+                                                <li><Link to="users/register">Registre-se</Link></li>
+                                            </>
+                                        )}
+                                    </>
+                                )}
+                            </>
+                        )}
+                    </ul>
+                </div>
+            </aside>
         </header>
+        
+        <section className={styles.menuMobileSection}>
+            <div className={styles.menuMobileDiv}>
+                    <ul>
+                        {authenticated === true && user.admin === 'Sim' ? (
+                            <>
+                                <li><Link to="users/profile">Editar meus dados!</Link></li>
+                                <li><Link to="admin/dashboard">Dashboard</Link></li>
+                                <li onClick={logout}>Sair</li>
+                            </>
+                        ) : (
+                            <>
+                                {authenticated === true && user.occupation === 'escritor' ? (
+                                    <>
+                                        <li><Link to="users/profile">Editar meus dados</Link></li>
+                                        <li><Link to="posts/createpost">Criar posts</Link></li>
+                                        <li><Link to="posts/myposts">Meus posts</Link></li>
+                                        <li onClick={logout}>Sair</li>
+                                    </>
+                                ) : (
+                                    <>
+                                        {authenticated === true ? (
+                                            <>
+                                                <li><Link to="users/profile">Editar meus dados</Link></li>
+                                                <li onClick={logout}>Sair</li>
+                                            </>
+                                        ): (
+                                            <>
+                                                <li><Link to="users/login">Login</Link></li>
+                                                <li><Link to="users/register">Registre-se</Link></li>
+                                            </>
+                                        )}
+                                    </>
+                                )}
+                            </>
+                        )}
+                        <AiOutlineClose className={styles.closeMenuMobile} onClick={closeMenuMobile}></AiOutlineClose>
+                    </ul>
+            </div>
+        </section>
         </>
     )
 }
