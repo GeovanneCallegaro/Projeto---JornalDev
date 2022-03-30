@@ -109,3 +109,29 @@
 .formArea form .buttonSubmit:focus {
     border: none;
 }
+
+/* Responsive */
+@media (max-width: 510px) {
+    .formArea {
+        min-width: 0;
+        width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .formArea {
+        min-width: 0;
+        width: 340px;
+    }
+}
+
+@media (max-width: 340px) {
+    .formArea {
+        min-width: 0;
+        width: 300px;
+    }
+
+    .formArea form input {
+        width: 250px;
+    }
+}

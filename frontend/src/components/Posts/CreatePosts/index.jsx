@@ -4,18 +4,17 @@ import {Link, useHistory} from 'react-router-dom'
 
 import {AiOutlineArrowLeft} from 'react-icons/ai'
 
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import {useFlashMessage} from '../../../hooks/useFlashMessage'
 
 import api from '../../../utils/api'
-import { Context } from '../../../context/userContext'
+
 
 export const CreatePosts = () => {
     const [token] = useState(localStorage.getItem('token') || '')
     const history = useHistory()
     const {setFlashMessage} = useFlashMessage()
     const [post, setPost] = useState({})
-    const {authenticated} = useContext(Context)
 
     const handlePost = (e) => {
         setPost({...post, [e.target.name]: e.target.value})
@@ -44,14 +43,10 @@ export const CreatePosts = () => {
 
     return (
         <> 
-            {authenticated === false ? (
-                history.push('/notfound')
-            ) : (<></>)}
             <header className={styles.headerContainer}>
                 <Link to="/"><AiOutlineArrowLeft className={styles.iconHeader}/></Link>
                 <h1>LOGO</h1>
             </header>
-
             <div className={styles.formContainer}>
                 <div className={styles.formArea}>
                     <h2>CRIE UMA NOTÍCIA</h2>

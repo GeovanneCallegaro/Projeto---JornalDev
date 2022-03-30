@@ -29,7 +29,7 @@
 .sectionContainer {
     max-width: 1080px;
     margin: 0px auto;
-    height: 1000px;
+    height: 400px;
 
     display: flex;
     justify-content: center;
@@ -101,4 +101,75 @@
     font-size: 1.4rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+}
+
+/* responsive */
+@media (max-width: 620px) {
+    .sectionContainer {
+        width: 500px;
+    }
+
+    .postsContainer {
+        width: 500px;
+    }
+
+    .sectionContainer .postsContainer .postItem {
+        width: 500px;
+    }
+}
+
+@media (max-width: 510px) {
+    .sectionContainer {
+        width: 440px;
+    }
+
+    .postsContainer {
+        width: 440px;
+    }
+
+    .sectionContainer .postsContainer .postItem {
+        width: 440px;
+    }
+}
+
+@media (max-width: 445px) {
+    .sectionContainer {
+        width: 400px;
+    }
+
+    .postsContainer {
+        width: 400px;
+    }
+
+    .sectionContainer .postsContainer .postItem {
+        width: 400px;
+    }
+}
+
+@media (max-width: 400px) {
+    .sectionContainer {
+        width: 350px;
+    }
+
+    .postsContainer {
+        width: 350px;
+    }
+
+    .sectionContainer .postsContainer .postItem {
+        width: 350px;
+    }
+}
+
+@media (max-width: 350px) {
+    .sectionContainer {
+        width: 300px;
+    }
+
+    .postsContainer {
+        width: 300px;
+    }
+
+    .sectionContainer .postsContainer .postItem {
+        width: 300px;
+    }
 }
