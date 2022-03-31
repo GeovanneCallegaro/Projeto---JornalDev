@@ -18,7 +18,7 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Rotas protegidas de autenticação
 - [x] Páginas para o usuário
 - [x] Páginas para o admin
-- [ ] Responsividade
+- [x] Responsividade
 
 ## 💻 Pré-requisitos
 
