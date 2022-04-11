@@ -8,6 +8,8 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/geovannecallegaro/project-jornal?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/geovanncallegaro/project-jornal?style=for-the-badge)
 
+<img src="jornal.png" alt="Imagem do projeto"></img>
+
 > Projeto feito com crud sendo feito para criação de notícias, exclusão, edição de dados e outros. Também há nivel de autenticação dos usuários!
 
 ### Ajustes e melhorias
@@ -42,7 +44,6 @@ git clone https://github.com/GeovanneCallegaro/project-jornal.git
 Para usar Jornal de Tudo, siga estas etapas:
 
 ```
-npx create-react-app .
 npm install
 ter o mongoDB em sua máquina
 ```
